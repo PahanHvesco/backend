@@ -4,7 +4,6 @@ import com.myapp.backend.dto.TranslatorDTO;
 import com.myapp.backend.mapper.TranslatorMapper;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,9 @@ public class TranslatorService {
                 String wordTranslate = net.suuft.libretranslate.Translator.translate("en", "ru", word);
                 translator = new Translator(translatorRepository.count()+1, word, wordTranslate);
             }
-            translatorRepository.save(translator);
+            if(!translator.getEn().equals(translator.getRu())){
+                translatorRepository.save(translator);
+            }
 
             return translator;
         }
