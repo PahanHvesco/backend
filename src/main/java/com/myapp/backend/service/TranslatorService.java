@@ -4,7 +4,6 @@ import com.myapp.backend.dto.TranslatorDTO;
 import com.myapp.backend.mapper.TranslatorMapper;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
