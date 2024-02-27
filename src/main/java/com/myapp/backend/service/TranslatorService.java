@@ -11,8 +11,10 @@ import java.util.List;
 
 @Service
 public class TranslatorService {
-    @Autowired
-    private TranslatorRepository translatorRepository;
+    private final TranslatorRepository translatorRepository;
+    public TranslatorService(TranslatorRepository translatorRepository){
+        this.translatorRepository = translatorRepository;
+    }
 
     public TranslatorDTO getTranslatorDTO(boolean reverse, String word){
         TranslatorMapper translatorMapper = new TranslatorMapper();

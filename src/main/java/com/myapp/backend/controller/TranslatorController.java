@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TranslatorController {
-    @Autowired
     TranslatorService translatorService;
+
+    public TranslatorController(TranslatorService translatorService){
+        this.translatorService = translatorService;
+    }
     @GetMapping("/translate")
     public TranslatorDTO translate(@RequestParam(value = "word", defaultValue = "") String word,
                                    @RequestParam(value = "reverse", defaultValue = "false") boolean reverse){
