@@ -2,7 +2,6 @@ package com.myapp.backend.service;
 
 import com.myapp.backend.dto.TranslatorDTO;
 import com.myapp.backend.mapper.TranslatorMapper;
-import com.myapp.backend.model.History;
 import com.myapp.backend.model.HistoryLanguage;
 import com.myapp.backend.model.HistoryTranslation;
 import com.myapp.backend.model.Translator;
@@ -50,7 +49,7 @@ public class TranslatorService {
         TranslatorMapper translatorMapper = new TranslatorMapper();
         HistoryLanguage historyLanguage =  historyLanguageService.createHistoryLanguage(translatorMapper.toEntity(translatorDTO), languageFrom, languageTo);
         HistoryTranslation historyTranslation =  historyTranslationService.createHistoryTranslation(translatorMapper.toEntity(translatorDTO));
-        History history = historyService.createHistory(historyLanguage, historyTranslation);
+        historyService.createHistory(historyLanguage, historyTranslation);
         return translatorDTO;
     }
 
@@ -76,7 +75,6 @@ public class TranslatorService {
                 languageIdentifier.getLanguage().equals("et") ||
                 languageIdentifier.getLanguage().equals("fr") ||
                 languageIdentifier.getLanguage().equals("it") ||
-                languageIdentifier.getLanguage().equals("lt") ||
                 languageIdentifier.getLanguage().equals("ro") ||
                 languageIdentifier.getLanguage().equals("pl") ||
                 languageIdentifier.getLanguage().equals("lt") ||

@@ -1,7 +1,6 @@
 package com.myapp.backend.controller;
 
 import com.myapp.backend.model.HistoryTranslation;
-import com.myapp.backend.model.Translator;
 import com.myapp.backend.service.HistoryTranslationService;
 import org.springframework.web.bind.annotation.*;
 
