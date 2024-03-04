@@ -55,7 +55,14 @@
 			<artifactId>libretranslate-java</artifactId>
 			<version>1.0.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-parsers</artifactId>
+			<version>1.17</version>
+		</dependency>
 	</dependencies>
+
+
 
 	<repositories>
 		<repository>
