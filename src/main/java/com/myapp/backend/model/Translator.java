@@ -3,10 +3,11 @@ package com.myapp.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "translated_words")
+@Table(name = "translator")
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +23,11 @@ public class Translator {
     private Set<HistoryTranslation> historyTranslations;
     @OneToMany(mappedBy = "translator", cascade = CascadeType.ALL)
     private Set<HistoryLanguage> historyLanguages;
+    @ManyToMany
+    @JoinTable(
+            name = "translator_tag",
+            joinColumns = {@JoinColumn(name = "translator_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    )
+    private Set<Tag> tags;
 }

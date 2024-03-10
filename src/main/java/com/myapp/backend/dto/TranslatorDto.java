@@ -7,12 +7,12 @@ import lombok.Setter;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class TranslatorDTO {
+public class TranslatorDto {
     private long id;
     private String line;
     private String translatedLine;
 
-    public TranslatorDTO(String line, String translatedLine) {
+    public TranslatorDto(String line, String translatedLine) {
         this.line = line;
         this.translatedLine = translatedLine;
     }

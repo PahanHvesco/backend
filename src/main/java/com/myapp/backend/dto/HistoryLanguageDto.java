@@ -7,8 +7,9 @@ import lombok.Setter;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class HistoryDTO {
+public class HistoryLanguageDto {
     private long id;
-    private long historyLanguageId;
-    private long historyTranslationId;
+    private long translatorId;
+    private String sourceLanguage;
+    private String targetLanguage;
 }

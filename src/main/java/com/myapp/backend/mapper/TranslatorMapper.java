@@ -1,13 +1,13 @@
 package com.myapp.backend.mapper;
 
-import com.myapp.backend.dto.TranslatorDTO;
+import com.myapp.backend.dto.TranslatorDto;
 import com.myapp.backend.model.Translator;
 import org.apache.tika.language.LanguageIdentifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TranslatorMapper {
-    public Translator toEntity(TranslatorDTO dto) {
+    public Translator toEntity(TranslatorDto dto) {
         Translator translator = new Translator();
         translator.setId(dto.getId());
         LanguageIdentifier languageIdentifier = new LanguageIdentifier(dto.getLine());

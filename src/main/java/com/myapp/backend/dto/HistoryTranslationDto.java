@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class HistoryTranslationDTO {
+public class HistoryTranslationDto {
     private long id;
     private long translatorId;
     private Timestamp data;

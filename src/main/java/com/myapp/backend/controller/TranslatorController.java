@@ -1,6 +1,5 @@
 package com.myapp.backend.controller;
 
-import com.myapp.backend.dto.TranslatorDTO;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.service.TranslatorService;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +12,6 @@ public class TranslatorController {
 
     public TranslatorController(TranslatorService translatorService){
         this.translatorService = translatorService;
-    }
-    @GetMapping("/translate")
-    public TranslatorDTO translate(@RequestParam(value = "str", defaultValue = "") String lineToTranslate,
-                                   @RequestParam(value = "from", defaultValue = "ru") String languageFrom,
-                                   @RequestParam(value = "to", defaultValue = "en") String languageTo){
-        return translatorService.translate(languageFrom, languageTo, lineToTranslate.toLowerCase());
     }
 
     @GetMapping

@@ -18,15 +18,10 @@ public class HistoryTranslation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
-    @JoinColumn(name = "translation_id")
+    @JoinColumn(name = "translator_id")
     private Translator translator;
     @Column(name = "date")
     private Timestamp date;
-    @ManyToMany
-    @JoinTable(
-            name = "history",
-            joinColumns = @JoinColumn(name = "history_translation_id"),
-            inverseJoinColumns = @JoinColumn(name = "history_language_id")
-    )
-    private Set<HistoryLanguage> historyLanguages;
+    @OneToMany(mappedBy = "historyTranslation", cascade = CascadeType.ALL)
+    private Set<History> histories;
 }

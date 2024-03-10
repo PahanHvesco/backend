@@ -16,12 +16,12 @@ public class HistoryLanguage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
-    @JoinColumn(name = "translation_id")
+    @JoinColumn(name = "translator_id")
     private Translator translator;
     @Column(name = "source_language")
     private String sourceLanguage;
     @Column(name = "target_language")
     private String targetLanguage;
-    @ManyToMany(mappedBy = "historyLanguages")
-    private Set<HistoryTranslation> historyTranslations;
+    @OneToMany(mappedBy = "historyLanguage", cascade = CascadeType.ALL)
+    private Set<History> histories;
 }
