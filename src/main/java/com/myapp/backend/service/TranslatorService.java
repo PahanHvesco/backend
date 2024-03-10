@@ -1,13 +1,7 @@
 package com.myapp.backend.service;
 
-import com.myapp.backend.dto.TranslatorDto;
-import com.myapp.backend.mapper.TranslatorMapper;
-import com.myapp.backend.model.HistoryLanguage;
-import com.myapp.backend.model.HistoryTranslation;
-import com.myapp.backend.model.Tag;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
-import org.apache.tika.language.LanguageIdentifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
