@@ -47,12 +47,4 @@ public class TranslatorService {
     public void deleteTranslatorById(long id) {
         translatorRepository.deleteById(id);
     }
-
-//    public void addTagToTranslator(long id, String nameTag) {
-//        Tag tag = tagService.addTranslatorToTag(nameTag, getTranslatorById(id));
-//        Translator translator = getTranslatorById(id);
-//        translator.getTags().add(tag);
-//        updateTranslator(id, translator);
-//
-//    }
 }

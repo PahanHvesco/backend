@@ -4,8 +4,6 @@ import com.myapp.backend.dto.TranslatorDto;
 import com.myapp.backend.service.MainService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.QueryParam;
-
 @RestController
 @RequestMapping("/main")
 public class MainController {

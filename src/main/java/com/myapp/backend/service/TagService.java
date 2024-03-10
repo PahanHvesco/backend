@@ -46,19 +46,4 @@ public class TagService {
         tag.setNameTag(nameTag);
         return tagRepository.save(tag);
     }
-
-    public Tag addTranslatorToTag(String nameTag, Translator translator) {
-        ArrayList<Tag> tags = new ArrayList<>(tagRepository.findAll());
-        for(Tag tag : tags) {
-            if(tag.getNameTag().equals(nameTag)) {
-                tag.getTranslators().add(translator);
-                updateTag(tag.getId(), tag);
-                return tag;
-            }
-        }
-        Set<Translator> translators = new HashSet<>();
-        translators.add(translator);
-        Tag tag = createTag(nameTag, translators);
-        return tag;
-    }
 }

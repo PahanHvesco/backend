@@ -1,7 +1,6 @@
 package com.myapp.backend.component;
 
 import com.myapp.backend.dto.TranslatorDto;
-import com.myapp.backend.mapper.TranslatorMapper;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
 import org.apache.tika.language.LanguageIdentifier;
@@ -28,8 +27,6 @@ public class TranslatorComponent {
         if(translatorDTO==null) {
             String lineTranslate = net.suuft.libretranslate.Translator.translate(languageFrom, languageTo, lineToTranslate);
             translatorDTO = new TranslatorDto(lineToTranslate, lineTranslate);
-
-            TranslatorMapper translatorMapper = new TranslatorMapper();
         }
         return translatorDTO;
     }

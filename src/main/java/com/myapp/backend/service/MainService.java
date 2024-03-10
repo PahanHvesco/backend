@@ -47,7 +47,6 @@ public class MainService {
 
     public void addTranslatorToTag(long id, String nameTag) {
         ArrayList<Tag> tags = new ArrayList<>(tagService.getAllTag());
-        Translator translator = translatorService.getTranslatorById(id);
         for(Tag tag : tags) {
             if(tag.getNameTag().equals(nameTag)) {
                 tag.getTranslators().add(translatorService.getTranslatorById(id));
