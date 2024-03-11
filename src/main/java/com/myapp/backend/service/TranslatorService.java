@@ -1,7 +1,5 @@
 package com.myapp.backend.service;
 
-import com.myapp.backend.dto.TranslatorDto;
-import com.myapp.backend.mapper.TranslatorMapper;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
 import org.springframework.stereotype.Service;
