@@ -1,5 +1,7 @@
 package com.myapp.backend.service;
 
+import com.myapp.backend.dto.HistoryLanguageDto;
+import com.myapp.backend.mapper.HistoryLanguageMapper;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.HistoryLanguageRepository;
 import org.springframework.stereotype.Service;
@@ -11,9 +13,11 @@ import java.util.Optional;
 @Service
 public class HistoryLanguageService {
     private final HistoryLanguageRepository historyLanguageRepository;
+    private final HistoryLanguageMapper historyLanguageMapper;
 
-    public HistoryLanguageService(HistoryLanguageRepository historyLanguageRepository) {
+    public HistoryLanguageService(HistoryLanguageRepository historyLanguageRepository, HistoryLanguageMapper historyLanguageMapper) {
         this.historyLanguageRepository = historyLanguageRepository;
+        this.historyLanguageMapper = historyLanguageMapper;
     }
 
     public List<HistoryLanguage> getAllHistoryLanguages() {
@@ -48,5 +52,9 @@ public class HistoryLanguageService {
         historyLanguage.setSourceLanguage(sourceLanguage);
         historyLanguage.setTargetLanguage(targetLanguage);
         return historyLanguageRepository.save(historyLanguage);
+    }
+
+    public HistoryLanguageDto getDto(long id) {
+        return historyLanguageMapper.toDTO(getHistoryLanguageById(id));
     }
 }

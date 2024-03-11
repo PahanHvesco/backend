@@ -1,5 +1,7 @@
 package com.myapp.backend.service;
 
+import com.myapp.backend.dto.TagDto;
+import com.myapp.backend.mapper.TagMapper;
 import com.myapp.backend.model.*;
 import com.myapp.backend.repository.TagRepository;
 import org.springframework.stereotype.Service;
@@ -9,9 +11,11 @@ import java.util.*;
 @Service
 public class TagService {
     private final TagRepository tagRepository;
+    private final TagMapper tagMapper;
 
-    TagService(TagRepository tagRepository) {
+    TagService(TagRepository tagRepository, TagMapper tagMapper) {
         this.tagRepository = tagRepository;
+        this.tagMapper = tagMapper;
     }
 
     public List<Tag> getAllTag() {
@@ -45,5 +49,9 @@ public class TagService {
         tag.setTranslators(translators);
         tag.setNameTag(nameTag);
         return tagRepository.save(tag);
+    }
+
+    public TagDto getDto(long id) {
+        return tagMapper.toDto(getTagById(id));
     }
 }

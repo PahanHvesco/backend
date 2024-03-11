@@ -7,10 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class HistoryTranslationMapper {
     public HistoryTranslationDto toDTO(HistoryTranslation historyTranslation) {
-        HistoryTranslationDto historyTranslationDTO = new HistoryTranslationDto();
-        historyTranslationDTO.setId(historyTranslation.getId());
-        historyTranslationDTO.setTranslatorId(historyTranslation.getTranslator().getId());
-        historyTranslationDTO.setData(historyTranslation.getDate());
-        return historyTranslationDTO;
+        return new HistoryTranslationDto(historyTranslation.getId(), historyTranslation.getTranslator().getId(), historyTranslation.getDate());
     }
 }

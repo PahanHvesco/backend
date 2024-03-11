@@ -1,5 +1,7 @@
 package com.myapp.backend.service;
 
+import com.myapp.backend.dto.HistoryDto;
+import com.myapp.backend.mapper.HistoryMapper;
 import com.myapp.backend.model.HistoryLanguage;
 import com.myapp.backend.model.HistoryTranslation;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,11 @@ import java.util.Optional;
 @Service
 public class HistoryService {
     private final HistoryRepository historyRepository;
+    private final HistoryMapper historyMapper;
 
-    public HistoryService(HistoryRepository historyRepository) {
+    public HistoryService(HistoryRepository historyRepository, HistoryMapper historyMapper) {
         this.historyRepository = historyRepository;
+        this.historyMapper = historyMapper;
     }
 
     public List<History> getAllHistory() {
@@ -48,5 +52,9 @@ public class HistoryService {
         history.setHistoryLanguage(historyLanguage);
         history.setHistoryTranslation(historyTranslation);
         return historyRepository.save(history);
+    }
+
+    public HistoryDto getDto(long id) {
+        return historyMapper.toDTO(getHistoryById(id));
     }
 }

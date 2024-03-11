@@ -1,5 +1,7 @@
 package com.myapp.backend.service;
 
+import com.myapp.backend.dto.HistoryTranslationDto;
+import com.myapp.backend.mapper.HistoryTranslationMapper;
 import com.myapp.backend.model.HistoryTranslation;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.HistoryTranslationRepository;
@@ -13,8 +15,10 @@ import java.util.Optional;
 @Service
 public class HistoryTranslationService {
     private final HistoryTranslationRepository historyTranslationRepository;
-    public HistoryTranslationService(HistoryTranslationRepository historyTranslationRepository) {
+    private final HistoryTranslationMapper historyTranslationMapper;
+    public HistoryTranslationService(HistoryTranslationRepository historyTranslationRepository, HistoryTranslationMapper historyTranslationMapper) {
         this.historyTranslationRepository = historyTranslationRepository;
+        this.historyTranslationMapper = historyTranslationMapper;
     }
 
     public HistoryTranslation createHistoryTranslation(HistoryTranslation historyTranslation) {
@@ -48,5 +52,9 @@ public class HistoryTranslationService {
         historyTranslation.setTranslator(translator);
         historyTranslation.setDate(Timestamp.valueOf(LocalDateTime.now()));
         return historyTranslationRepository.save(historyTranslation);
+    }
+
+    public HistoryTranslationDto getDto(long id) {
+        return historyTranslationMapper.toDTO(getHistoryTranslationById(id));
     }
 }
