@@ -44,12 +44,6 @@ public class TagService {
         }
         return null;
     }
-    public Tag createTag(String nameTag, Set<Translator> translators) {
-        Tag tag = new Tag();
-        tag.setTranslators(translators);
-        tag.setNameTag(nameTag);
-        return tagRepository.save(tag);
-    }
 
     public TagDto getDto(long id) {
         return tagMapper.toDto(getTagById(id));
