@@ -1,5 +1,7 @@
 package com.myapp.backend.controller;
 
+import com.myapp.backend.model.HistoryLanguage;
+import com.myapp.backend.model.HistoryTranslation;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.service.TranslatorService;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,16 @@ public class TranslatorController {
     @GetMapping
     public List<Translator> getAllTranslators() {
         return translatorService.getAllTranslators();
+    }
+
+    @GetMapping("/history/language/{id}")
+    public List<HistoryLanguage> getAllHistoryLanguageById(@PathVariable long id) {
+        return translatorService.getAllHistoryLanguageById(id);
+    }
+
+    @GetMapping("/history/translation/{id}")
+    public List<HistoryTranslation> getAllHistoryTranslationById(@PathVariable long id) {
+        return translatorService.getAllHistoryTranslationById(id);
     }
 
     @GetMapping("/{id}")

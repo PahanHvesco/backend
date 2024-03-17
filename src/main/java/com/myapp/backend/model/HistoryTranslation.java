@@ -17,11 +17,12 @@ public class HistoryTranslation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "date")
+    private Timestamp date;
+
     @ManyToOne
     @JoinColumn(name = "translator_id")
     private Translator translator;
-    @Column(name = "date")
-    private Timestamp date;
     @OneToMany(mappedBy = "historyTranslation", cascade = CascadeType.ALL)
     private Set<History> histories;
 }

@@ -1,5 +1,7 @@
 package com.myapp.backend.service;
 
+import com.myapp.backend.model.HistoryLanguage;
+import com.myapp.backend.model.HistoryTranslation;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,14 @@ public class TranslatorService {
     @Transactional
     public Translator createTranslator(Translator translator) {
         return translatorRepository.save(translator);
+    }
+
+    public List<HistoryLanguage> getAllHistoryLanguageById(long id) {
+        return translatorRepository.getAllHistoryLanguageById(id);
+    }
+
+    public List<HistoryTranslation> getAllHistoryTranslationById(long id) {
+        return translatorRepository.getAllHistoryTranslationById(id);
     }
 
     public List<Translator> getAllTranslators() {
