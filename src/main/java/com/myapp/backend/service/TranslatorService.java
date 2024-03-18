@@ -4,6 +4,7 @@ import com.myapp.backend.model.HistoryLanguage;
 import com.myapp.backend.model.HistoryTranslation;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -33,6 +34,7 @@ public class TranslatorService {
         return translatorRepository.findAll();
     }
 
+    @Cacheable("translators")
     public Translator getTranslatorById(long id) {
         return translatorRepository.findById(id).orElse(null);
     }

@@ -4,6 +4,7 @@ import com.myapp.backend.dto.HistoryLanguageDto;
 import com.myapp.backend.mapper.HistoryLanguageMapper;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.HistoryLanguageRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.myapp.backend.model.HistoryLanguage;
 
@@ -24,6 +25,7 @@ public class HistoryLanguageService {
         return historyLanguageRepository.findAll();
     }
 
+    @Cacheable("history_language")
     public HistoryLanguage getHistoryLanguageById(long id) {
         return historyLanguageRepository.findById(id).orElse(null);
     }

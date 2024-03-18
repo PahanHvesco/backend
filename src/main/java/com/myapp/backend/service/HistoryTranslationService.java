@@ -5,6 +5,7 @@ import com.myapp.backend.mapper.HistoryTranslationMapper;
 import com.myapp.backend.model.HistoryTranslation;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.HistoryTranslationRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -25,6 +26,7 @@ public class HistoryTranslationService {
         return historyTranslationRepository.save(historyTranslation);
     }
 
+    @Cacheable("history_translation")
     public HistoryTranslation getHistoryTranslationById(Long id) {
         return historyTranslationRepository.findById(id).orElse(null);
     }

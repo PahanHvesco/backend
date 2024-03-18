@@ -4,6 +4,7 @@ import com.myapp.backend.dto.TagDto;
 import com.myapp.backend.mapper.TagMapper;
 import com.myapp.backend.model.*;
 import com.myapp.backend.repository.TagRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -22,6 +23,7 @@ public class TagService {
         return tagRepository.findAll();
     }
 
+    @Cacheable("tags")
     public Tag getTagById(long id) {
         return tagRepository.findById(id).orElse(null);
     }

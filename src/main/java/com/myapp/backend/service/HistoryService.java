@@ -4,6 +4,7 @@ import com.myapp.backend.dto.HistoryDto;
 import com.myapp.backend.mapper.HistoryMapper;
 import com.myapp.backend.model.HistoryLanguage;
 import com.myapp.backend.model.HistoryTranslation;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.myapp.backend.model.History;
 import com.myapp.backend.repository.HistoryRepository;
@@ -25,6 +26,7 @@ public class HistoryService {
         return historyRepository.findAll();
     }
 
+    @Cacheable("history")
     public History getHistoryById(long id) {
         return historyRepository.findById(id).orElse(null);
     }
