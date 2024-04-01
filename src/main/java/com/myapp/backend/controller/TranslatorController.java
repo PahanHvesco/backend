@@ -1,53 +1,62 @@
 package com.myapp.backend.controller;
 
-import com.myapp.backend.model.HistoryLanguage;
-import com.myapp.backend.model.HistoryTranslation;
+import com.myapp.backend.dto.TranslatorDto;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.service.TranslatorService;
-import org.springframework.web.bind.annotation.*;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/translator")
-public class TranslatorController {
+@Log4j2
+@AllArgsConstructor
+public final class TranslatorController {
     private final TranslatorService translatorService;
 
-    public TranslatorController(TranslatorService translatorService){
-        this.translatorService = translatorService;
-    }
-
-    @GetMapping
-    public List<Translator> getAllTranslators() {
-        return translatorService.getAllTranslators();
-    }
-
-    @GetMapping("/history/language/{id}")
-    public List<HistoryLanguage> getAllHistoryLanguageById(@PathVariable long id) {
-        return translatorService.getAllHistoryLanguageById(id);
-    }
-
-    @GetMapping("/history/translation/{id}")
-    public List<HistoryTranslation> getAllHistoryTranslationById(@PathVariable long id) {
-        return translatorService.getAllHistoryTranslationById(id);
+    @GetMapping("/translate")
+    public TranslatorDto translate(@RequestParam(value = "str", defaultValue = "") final String lineToTranslate,
+                                   @RequestParam(value = "from", defaultValue = "ru") final String languageFrom,
+                                   @RequestParam(value = "to", defaultValue = "en") final String languageTo) {
+        return translatorService.translate(languageFrom, languageTo, lineToTranslate.toLowerCase());
     }
 
     @GetMapping("/{id}")
-    public Translator getTranslatorById(@PathVariable long id) {
-        return translatorService.getTranslatorById(id);
+    public TranslatorDto getTranslatorById(@PathVariable final long id) {
+        log.info("GET endpoint /translator/{id} was called.");
+        return translatorService.convertEntityToDto(translatorService.getTranslatorById(id));
+    }
+
+    @GetMapping("/all")
+    public List<TranslatorDto> getAllTranslators() {
+        return translatorService.getAllTranslatorsDto();
     }
 
     @PostMapping
-    public Translator createTranslator(@RequestBody Translator translator) {
+    public Translator createTranslator(@RequestBody final Translator translator) {
+        log.info("POST endpoint /translator/{id} was called.");
         return translatorService.createTranslator(translator);
     }
 
     @PutMapping("/{id}")
-    public Translator updateTranslator(@PathVariable long id, @RequestBody Translator updatedTranslator) {
+    public Translator updateTranslator(@PathVariable final long id, @RequestBody final Translator updatedTranslator) {
+        log.info("PUT endpoint /translator/{id} was called.");
         return translatorService.updateTranslator(id, updatedTranslator);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTranslator(@PathVariable long id) {
+    public void deleteTranslator(@PathVariable final long id) {
+        log.info("DELETE endpoint /translator/{%d} was called.");
         translatorService.deleteTranslatorById(id);
     }
 }

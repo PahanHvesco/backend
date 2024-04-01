@@ -1,13 +1,19 @@
 package com.myapp.backend.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
-@Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class HistoryTranslationDto {
     private long id;
-    private long translatorId;
-    private Timestamp data;
+    private Timestamp date;
+    private String source;
+    private String target;
 }

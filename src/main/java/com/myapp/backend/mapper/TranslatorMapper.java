@@ -1,26 +1,19 @@
 package com.myapp.backend.mapper;
 
 import com.myapp.backend.dto.TranslatorDto;
+import com.myapp.backend.mapper.interfaces.IMapper;
 import com.myapp.backend.model.Translator;
-import org.apache.tika.language.LanguageIdentifier;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TranslatorMapper {
-    public Translator toEntity(TranslatorDto dto) {
-        Translator translator = new Translator();
-        translator.setId(dto.getId());
-        LanguageIdentifier languageIdentifier = new LanguageIdentifier(dto.getLine());
-        if(languageIdentifier.getLanguage().equals("ru") ||
-                languageIdentifier.getLanguage().equals("uk") ||
-                languageIdentifier.getLanguage().equals("be")) {
-            translator.setEn(dto.getTranslatedLine());
-            translator.setRu(dto.getLine());
-        } else {
-            translator.setRu(dto.getTranslatedLine());
-            translator.setEn(dto.getLine());
-        }
+public final class TranslatorMapper implements IMapper<TranslatorDto, Translator> {
+    @Override
+    public TranslatorDto entityToDto(final Translator entity) {
+        return new TranslatorDto(entity.getId(), entity.getEn(), entity.getRu());
+    }
 
-        return translator;
+    @Override
+    public Translator dtoToEntity(final TranslatorDto dto) {
+        return new Translator(dto.getId(), dto.getEn(), dto.getRu(), null, null);
     }
 }
