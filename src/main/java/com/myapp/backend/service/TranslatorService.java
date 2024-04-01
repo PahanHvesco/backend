@@ -32,7 +32,6 @@ public final class TranslatorService {
             throw new InvalidDataException("LanguageTo and LanguageFrom can't be the same");
         }
         TranslatorDto translatorDTO = searchByTable(lineToTranslate);
-        Translator translator;
         if (translatorDTO == null) {
             String lineTranslate = net.suuft.libretranslate.Translator.translate(languageFrom, languageTo, lineToTranslate);
             if (languageFrom.equals("ru") && languageTo.equals("en")) {
