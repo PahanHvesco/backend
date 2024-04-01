@@ -23,6 +23,7 @@ public final class TranslatorService {
     private final SimpleCacheComponent<Translator> simpleCacheComponent;
     private final TranslatorMapper translatorMapper;
     private final HistoryTranslationService historyTranslationService;
+     private static final String NOT_FOUND = "Not found Translator by id: ";
 
     public TranslatorDto translate(final String languageFrom,
                                    final String languageTo,
@@ -77,7 +78,7 @@ public final class TranslatorService {
         Translator translator = simpleCacheComponent.get(id);
         if (translator == null) {
             if (!translatorRepository.existsById(id)) {
-                throw new ResourceNotFoundException("Not found Translator by id: " + id);
+                throw new ResourceNotFoundException(NOT_FOUND + id);
             }
             translator = translatorRepository.findById(id).orElse(null);
             simpleCacheComponent.put(id, translator);
@@ -91,7 +92,7 @@ public final class TranslatorService {
 
     public Translator updateTranslator(final long id, final Translator updatedTranslator) {
         if (!translatorRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Not found Translator by id: " + id);
+            throw new ResourceNotFoundException(NOT_FOUND + id);
         }
         Optional<Translator> existingTranslator = translatorRepository.findById(id);
         if (existingTranslator.isPresent()) {
@@ -108,7 +109,7 @@ public final class TranslatorService {
 
     public void deleteTranslatorById(final long id) {
         if (!translatorRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Not found Translator by id: " + id);
+            throw new ResourceNotFoundException(NOT_FOUND + id);
         }
         simpleCacheComponent.remove(id);
         translatorRepository.deleteById(id);

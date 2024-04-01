@@ -22,6 +22,7 @@ public final  class TagService {
     private final TagMapper tagMapper;
     private final SimpleCacheComponent<Tag> simpleCacheComponent;
     private final TranslatorService translatorService;
+    private static final String NOT_FOUND = "Not found Tag by id: ";
 
     public void addTranslatorToTag(final long id, final String nameTag) {
         ArrayList<Tag> tags = new ArrayList<>(getAllTag());
@@ -50,7 +51,7 @@ public final  class TagService {
         Tag tag = simpleCacheComponent.get(id);
         if (tag == null) {
             if (!tagRepository.existsById(id)) {
-                throw new ResourceNotFoundException("Not found Tag by id: " + id);
+                throw new ResourceNotFoundException(NOT_FOUND + id);
             }
             tag = tagRepository.findById(id).orElse(null);
             simpleCacheComponent.put(id, tag);
@@ -69,7 +70,7 @@ public final  class TagService {
 
     public void deleteTag(final long id) {
         if (!tagRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Not found Tag by id: " + id);
+            throw new ResourceNotFoundException(NOT_FOUND + id);
         }
         simpleCacheComponent.remove(id);
         tagRepository.deleteById(id);
@@ -78,7 +79,7 @@ public final  class TagService {
 
     public Tag updateTag(final long id, final Tag updateTag) {
         if (!tagRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Not found Tag by id: " + id);
+            throw new ResourceNotFoundException(NOT_FOUND + id);
         }
         Optional<Tag> existingTag = tagRepository.findById(id);
         if (existingTag.isPresent()) {

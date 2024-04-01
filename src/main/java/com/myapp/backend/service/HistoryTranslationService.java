@@ -26,7 +26,7 @@ public final class HistoryTranslationService {
     private final HistoryTranslationRepository historyTranslationRepository;
     private final HistoryTranslationMapper historyTranslationMapper;
     private final SimpleCacheComponent<HistoryTranslation> simpleCacheComponent;
-    private final String notFound = "Not found History Translation by id: ";
+    private static final String NOT_FOUND = "Not found History Translation by id: ";
 
     public HistoryTranslation createHistoryTranslation(final HistoryTranslation historyTranslation) {
         log.info("POST endpoint success.");
@@ -37,7 +37,7 @@ public final class HistoryTranslationService {
         HistoryTranslation historyTranslation = simpleCacheComponent.get(id);
         if (historyTranslation == null) {
             if (!historyTranslationRepository.existsById(id)) {
-                throw new ResourceNotFoundException(notFound + id);
+                throw new ResourceNotFoundException(NOT_FOUND + id);
             }
             historyTranslation = historyTranslationRepository
                     .findById(id).orElse(null);
@@ -68,7 +68,7 @@ public final class HistoryTranslationService {
 
     public void deleteHistoryTranslationById(final Long id) {
         if (!historyTranslationRepository.existsById(id)) {
-            throw new ResourceNotFoundException(notFound + id);
+            throw new ResourceNotFoundException(NOT_FOUND + id);
         }
         simpleCacheComponent.remove(id);
         historyTranslationRepository.deleteById(id);
@@ -77,7 +77,7 @@ public final class HistoryTranslationService {
 
     public HistoryTranslation updateHistoryTranslation(final long id, final HistoryTranslation updatedTranslation) {
         if (!historyTranslationRepository.existsById(id)) {
-            throw new ResourceNotFoundException(notFound + id);
+            throw new ResourceNotFoundException(NOT_FOUND + id);
         }
         Optional<HistoryTranslation> existingTranslation = historyTranslationRepository.findById(id);
         if (existingTranslation.isPresent()) {
