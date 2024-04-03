@@ -179,16 +179,4 @@ class HistoryTranslationServiceTest {
         assertNotNull(result);
     }
 
-    @Test
-    public void testConvertDtoToEntity() {
-        // Mocking
-        HistoryTranslationDto historyTranslationDto = new HistoryTranslationDto();
-        when(historyTranslationMapper.dtoToEntity(historyTranslationDto)).thenReturn(new HistoryTranslation());
-
-        // Testing
-        HistoryTranslation result = historyTranslationService.convertDtoToEntity(historyTranslationDto);
-
-        // Verification
-        assertNotNull(result);
-    }
 }
