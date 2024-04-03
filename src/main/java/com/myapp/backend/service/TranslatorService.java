@@ -19,11 +19,11 @@ import java.util.Optional;
 @Log4j2
 @AllArgsConstructor
 public final class TranslatorService {
-    private final TranslatorRepository translatorRepository;
+    public final TranslatorRepository translatorRepository;
     private final SimpleCacheComponent<Translator> simpleCacheComponent;
     private final TranslatorMapper translatorMapper;
     private final HistoryTranslationService historyTranslationService;
-     private static final String NOT_FOUND = "Not found Translator by id: ";
+    private static final String NOT_FOUND = "Not found Translator by id: ";
 
     public TranslatorDto translate(final String languageFrom,
                                    final String languageTo,
@@ -60,6 +60,15 @@ public final class TranslatorService {
         return translatorRepository.save(translator);
     }
 
+    public void createTranslatorsBulk(final List<Translator> translators) {
+        if (translators.isEmpty()) {
+            throw new InvalidDataException("Data is empty: List empty");
+        }
+        translators.stream()
+                .map(translatorRepository::save)
+                .forEach(savedHistoryTranslations -> log.info("Tag saved ID{}", savedHistoryTranslations.getId()));
+    }
+
     public List<Translator> getAllTranslators() {
         return translatorRepository.findAll();
     }
@@ -71,7 +80,6 @@ public final class TranslatorService {
         }
         return translatorsDto;
     }
-
 
     public Translator getTranslatorById(final long id) {
         Translator translator = simpleCacheComponent.get(id);

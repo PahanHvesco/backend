@@ -45,6 +45,11 @@ public final class TagController {
         return tagService.createTag(tag);
     }
 
+    @PostMapping("/bulk")
+    public void createHistoryTranslations(@RequestBody final List<Tag> tags) {
+        tagService.createTagsBulk(tags);
+    }
+
     @PutMapping("/{id}")
     public Tag updateTag(@PathVariable final long id, @RequestBody final Tag tag) {
         log.info("PUT endpoint /tag/{id} was called.");

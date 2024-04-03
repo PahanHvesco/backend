@@ -48,6 +48,11 @@ public final class TranslatorController {
         return translatorService.createTranslator(translator);
     }
 
+    @PostMapping("/bulk")
+    public void createHistoryTranslations(@RequestBody final List<Translator> translators) {
+        translatorService.createTranslatorsBulk(translators);
+    }
+
     @PutMapping("/{id}")
     public Translator updateTranslator(@PathVariable final long id, @RequestBody final Translator updatedTranslator) {
         log.info("PUT endpoint /translator/{id} was called.");

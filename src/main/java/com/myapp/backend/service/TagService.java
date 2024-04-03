@@ -2,6 +2,7 @@ package com.myapp.backend.service;
 
 import com.myapp.backend.component.SimpleCacheComponent;
 import com.myapp.backend.dto.TagDto;
+import com.myapp.backend.exception.InvalidDataException;
 import com.myapp.backend.exception.ResourceNotFoundException;
 import com.myapp.backend.mapper.TagMapper;
 import com.myapp.backend.model.Tag;
@@ -66,6 +67,15 @@ public final  class TagService {
     public Tag createTag(final Tag tag) {
         log.info("POST endpoint success.");
         return tagRepository.save(tag);
+    }
+
+    public void createTagsBulk(final List<Tag> tags) {
+        if (tags.isEmpty()) {
+            throw new InvalidDataException("Data is empty: List empty");
+        }
+        tags.stream()
+                .map(tagRepository::save)
+                .forEach(savedHistoryTranslations -> log.info("Tag saved ID{}", savedHistoryTranslations.getId()));
     }
 
     public void deleteTag(final long id) {
