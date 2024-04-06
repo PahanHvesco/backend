@@ -281,3 +281,57 @@ Caused by: java.lang.IllegalStateException: Failed to replace DataSource with an
 [2024-04-06 10:06:25] INFO  - Closing JPA EntityManagerFactory for persistence unit 'default'
 [2024-04-06 10:06:25] INFO  - HikariPool-1 - Shutdown initiated...
 [2024-04-06 10:06:25] INFO  - HikariPool-1 - Shutdown completed.
+[2024-04-06 11:01:58] INFO  - Starting TagMapperTest using Java 17.0.10 with PID 3048 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:01:58] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:01:58] INFO  - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2024-04-06 11:01:58] INFO  - Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+[2024-04-06 11:01:59] INFO  - HikariPool-1 - Starting...
+[2024-04-06 11:01:59] INFO  - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@faea4da
+[2024-04-06 11:01:59] INFO  - HikariPool-1 - Start completed.
+[2024-04-06 11:01:59] INFO  - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2024-04-06 11:01:59] INFO  - HHH000412: Hibernate ORM core version 6.4.4.Final
+[2024-04-06 11:01:59] INFO  - HHH000026: Second-level cache disabled
+[2024-04-06 11:02:00] INFO  - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2024-04-06 11:02:01] INFO  - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2024-04-06 11:02:01] INFO  - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-06 11:02:01] INFO  - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2024-04-06 11:02:03] INFO  - Started TagMapperTest in 5.692 seconds (process running for 6.835)
+[2024-04-06 11:02:03] INFO  - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-06 11:02:03] INFO  - HikariPool-1 - Shutdown initiated...
+[2024-04-06 11:02:03] INFO  - HikariPool-1 - Shutdown completed.
+[2024-04-06 11:02:18] INFO  - Starting HistoryTranslationMapperTest using Java 17.0.10 with PID 21120 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:02:18] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:02:19] INFO  - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2024-04-06 11:02:19] INFO  - Finished Spring Data repository scanning in 65 ms. Found 3 JPA repository interfaces.
+[2024-04-06 11:02:19] INFO  - HikariPool-1 - Starting...
+[2024-04-06 11:02:20] INFO  - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@35650279
+[2024-04-06 11:02:20] INFO  - HikariPool-1 - Start completed.
+[2024-04-06 11:02:20] INFO  - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2024-04-06 11:02:20] INFO  - HHH000412: Hibernate ORM core version 6.4.4.Final
+[2024-04-06 11:02:20] INFO  - HHH000026: Second-level cache disabled
+[2024-04-06 11:02:20] INFO  - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2024-04-06 11:02:21] INFO  - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2024-04-06 11:02:21] INFO  - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-06 11:02:22] INFO  - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2024-04-06 11:02:23] INFO  - Started HistoryTranslationMapperTest in 6.043 seconds (process running for 7.395)
+[2024-04-06 11:02:24] INFO  - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-06 11:02:24] INFO  - HikariPool-1 - Shutdown initiated...
+[2024-04-06 11:02:24] INFO  - HikariPool-1 - Shutdown completed.
+[2024-04-06 11:03:51] INFO  - Starting HistoryTranslationMapperTest using Java 17.0.10 with PID 11704 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:03:51] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:03:52] INFO  - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2024-04-06 11:03:52] INFO  - Finished Spring Data repository scanning in 54 ms. Found 3 JPA repository interfaces.
+[2024-04-06 11:03:52] INFO  - HikariPool-1 - Starting...
+[2024-04-06 11:03:53] INFO  - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a7c678b
+[2024-04-06 11:03:53] INFO  - HikariPool-1 - Start completed.
+[2024-04-06 11:03:53] INFO  - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2024-04-06 11:03:53] INFO  - HHH000412: Hibernate ORM core version 6.4.4.Final
+[2024-04-06 11:03:53] INFO  - HHH000026: Second-level cache disabled
+[2024-04-06 11:03:53] INFO  - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2024-04-06 11:03:54] INFO  - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2024-04-06 11:03:54] INFO  - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-06 11:03:54] INFO  - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2024-04-06 11:03:56] INFO  - Started HistoryTranslationMapperTest in 5.582 seconds (process running for 6.762)
+[2024-04-06 11:03:57] INFO  - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-06 11:03:57] INFO  - HikariPool-1 - Shutdown initiated...
+[2024-04-06 11:03:57] INFO  - HikariPool-1 - Shutdown completed.
