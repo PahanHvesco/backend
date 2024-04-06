@@ -353,3 +353,52 @@ Caused by: java.lang.IllegalStateException: Failed to replace DataSource with an
 [2024-04-06 11:07:01] INFO  - Closing JPA EntityManagerFactory for persistence unit 'default'
 [2024-04-06 11:07:01] INFO  - HikariPool-1 - Shutdown initiated...
 [2024-04-06 11:07:01] INFO  - HikariPool-1 - Shutdown completed.
+[2024-04-06 11:30:32] INFO  - Starting HistoryTranslationControllerTest using Java 17.0.10 with PID 21516 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:30:32] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:30:35] INFO  - Initializing Spring TestDispatcherServlet ''
+[2024-04-06 11:30:35] INFO  - Initializing Servlet ''
+[2024-04-06 11:30:35] INFO  - Completed initialization in 3 ms
+[2024-04-06 11:30:35] INFO  - Started HistoryTranslationControllerTest in 3.312 seconds (process running for 4.504)
+[2024-04-06 11:30:35] INFO  - POST endpoint /history/translation/{id} was called.
+[2024-04-06 11:30:35] INFO  - DELETE endpoint /history/translation/{id} was called.
+[2024-04-06 11:30:35] INFO  - GET endpoint /history/translation/{source}/{target} was called.
+[2024-04-06 11:30:35] INFO  - PUT endpoint /history/translation/{id} was called.
+[2024-04-06 11:30:35] INFO  - GET endpoint /history/translation/{id} was called.
+[2024-04-06 11:32:08] INFO  - Starting HistoryTranslationControllerTest using Java 17.0.10 with PID 1912 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:32:08] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:32:11] INFO  - Initializing Spring TestDispatcherServlet ''
+[2024-04-06 11:32:11] INFO  - Initializing Servlet ''
+[2024-04-06 11:32:11] INFO  - Completed initialization in 2 ms
+[2024-04-06 11:32:11] INFO  - Started HistoryTranslationControllerTest in 3.072 seconds (process running for 4.235)
+[2024-04-06 11:32:11] INFO  - GET endpoint /history/translation/{id} was called.
+[2024-04-06 11:32:46] INFO  - Starting HistoryTranslationControllerTest using Java 17.0.10 with PID 12756 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:32:46] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:32:49] INFO  - Initializing Spring TestDispatcherServlet ''
+[2024-04-06 11:32:49] INFO  - Initializing Servlet ''
+[2024-04-06 11:32:49] INFO  - Completed initialization in 3 ms
+[2024-04-06 11:32:49] INFO  - Started HistoryTranslationControllerTest in 3.099 seconds (process running for 4.171)
+[2024-04-06 11:32:49] INFO  - GET endpoint /history/translation/{id} was called.
+[2024-04-06 11:34:17] INFO  - Starting HistoryTranslationControllerTest using Java 17.0.10 with PID 284 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:34:17] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:34:20] INFO  - Initializing Spring TestDispatcherServlet ''
+[2024-04-06 11:34:20] INFO  - Initializing Servlet ''
+[2024-04-06 11:34:20] INFO  - Completed initialization in 2 ms
+[2024-04-06 11:34:20] INFO  - Started HistoryTranslationControllerTest in 3.015 seconds (process running for 4.159)
+[2024-04-06 11:34:20] INFO  - GET endpoint /history/translation/{id} was called.
+[2024-04-06 11:36:32] INFO  - Starting HistoryTranslationControllerTest using Java 17.0.10 with PID 8836 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:36:32] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:36:35] INFO  - Initializing Spring TestDispatcherServlet ''
+[2024-04-06 11:36:35] INFO  - Initializing Servlet ''
+[2024-04-06 11:36:35] INFO  - Completed initialization in 2 ms
+[2024-04-06 11:36:35] INFO  - Started HistoryTranslationControllerTest in 3.726 seconds (process running for 5.077)
+[2024-04-06 11:36:35] INFO  - GET endpoint /history/translation/{id} was called.
+[2024-04-06 11:38:13] INFO  - Starting HistoryTranslationControllerTest using Java 17.0.10 with PID 13812 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-06 11:38:13] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-06 11:38:15] INFO  - Initializing Spring TestDispatcherServlet ''
+[2024-04-06 11:38:15] INFO  - Initializing Servlet ''
+[2024-04-06 11:38:15] INFO  - Completed initialization in 4 ms
+[2024-04-06 11:38:15] INFO  - Started HistoryTranslationControllerTest in 3.032 seconds (process running for 4.158)
+[2024-04-06 11:38:16] INFO  - POST endpoint /history/translation/{id} was called.
+[2024-04-06 11:38:16] INFO  - DELETE endpoint /history/translation/{id} was called.
+[2024-04-06 11:38:16] INFO  - GET endpoint /history/translation/{source}/{target} was called.
+[2024-04-06 11:38:16] INFO  - PUT endpoint /history/translation/{id} was called.
