@@ -94,9 +94,9 @@
                         <exclude>com/myapp/backend/repository/HistoryTranslationRepository.class</exclude>
                         <exclude>com/myapp/backend/repository/TagRepository.class</exclude>
                         <exclude>com/myapp/backend/repository/TranslatorRepository.class</exclude>
-                        <exclude>com/myapp/backend/mapper/HistoryTranslationMapper.class</exclude>
-                        <exclude>com/myapp/backend/mapper/TagMapper.class</exclude>
-                        <exclude>com/myapp/backend/mapper/TranslatorMapper.class</exclude>
+                        <exclude>com/myapp/backend/mapper/HistoryTranslationMapper.java</exclude>
+                        <exclude>com/myapp/backend/mapper/TagMapper.java</exclude>
+                        <exclude>com/myapp/backend/mapper/TranslatorMapper.java</exclude>
                     </excludes>
                 </configuration>
                 <executions>
