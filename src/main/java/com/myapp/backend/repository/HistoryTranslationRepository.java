@@ -1,5 +1,7 @@
 package com.myapp.backend.repository;
 
+
+
 import com.myapp.backend.dto.TranslatorDto;
 import com.myapp.backend.model.HistoryTranslation;
 import org.springframework.data.jpa.repository.JpaRepository;
