@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -22,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(HistoryTranslationController.class)
-public class HistoryTranslationControllerTest {
+class HistoryTranslationControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -34,7 +33,7 @@ public class HistoryTranslationControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void testGetHistoryTranslationById() throws Exception {
+    void testGetHistoryTranslationById() throws Exception {
         long id = 1L;
         HistoryTranslationDto expectedDto = new HistoryTranslationDto();
         expectedDto.setId(id);
@@ -48,7 +47,7 @@ public class HistoryTranslationControllerTest {
     }
 
     @Test
-    public void testGetAllHistoryTranslations() throws Exception {
+    void testGetAllHistoryTranslations() throws Exception {
         // Mock service response
         List<HistoryTranslationDto> expectedDtos = List.of(
                 new HistoryTranslationDto(1L, null, "english", "russian"),
@@ -94,7 +93,7 @@ public class HistoryTranslationControllerTest {
     }
 
     @Test
-    public void testCreateHistoryTranslation() throws Exception {
+    void testCreateHistoryTranslation() throws Exception {
         // Mock service response
         HistoryTranslation createdTranslation = new HistoryTranslation(1L, null, "english", "russian", null);
         when(historyTranslationService.createHistoryTranslation(any())).thenReturn(createdTranslation);
@@ -112,7 +111,7 @@ public class HistoryTranslationControllerTest {
     }
 
     @Test
-    public void testCreateHistoryTranslations() throws Exception {
+    void testCreateHistoryTranslations() throws Exception {
         // Perform POST request with JSON payload and verify response
         mockMvc.perform(post("/history/translation/bulk")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -124,7 +123,7 @@ public class HistoryTranslationControllerTest {
     }
 
     @Test
-    public void testUpdateHistoryTranslation() throws Exception {
+    void testUpdateHistoryTranslation() throws Exception {
         // Mock service response
         HistoryTranslation updatedTranslation = new HistoryTranslation(1L, null, "english", "russian", null);
         when(historyTranslationService.updateHistoryTranslation(anyLong(), any())).thenReturn(updatedTranslation);
@@ -142,7 +141,7 @@ public class HistoryTranslationControllerTest {
     }
 
     @Test
-    public void testDeleteHistoryTranslation() throws Exception {
+    void testDeleteHistoryTranslation() throws Exception {
         // Perform DELETE request and verify response
         mockMvc.perform(delete("/history/translation/1"))
                 .andExpect(status().isOk());

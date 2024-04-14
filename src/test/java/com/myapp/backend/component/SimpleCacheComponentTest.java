@@ -5,17 +5,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class SimpleCacheComponentTest {
+class SimpleCacheComponentTest {
 
     private SimpleCacheComponent<String> cache;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         cache = new SimpleCacheComponent<>();
     }
 
     @Test
-    public void testPutAndGet() {
+    void testPutAndGet() {
         long key = 123;
         String value = "Test Value";
 
@@ -25,7 +25,7 @@ public class SimpleCacheComponentTest {
     }
 
     @Test
-    public void testRemove() {
+    void testRemove() {
         long key = 123;
         String value = "Test Value";
 
@@ -36,7 +36,7 @@ public class SimpleCacheComponentTest {
     }
 
     @Test
-    public void testClearCacheWhenFull() {
+    void testClearCacheWhenFull() {
         // Add more than 100 items to fill the cache
         for (long i = 0; i < 110; i++) {
             cache.put(i, "Value " + i);

@@ -81,7 +81,7 @@ class TranslatorServiceTest {
     void testTranslate_NoTranslationNeeded() {
         // Arrange
         String languageFrom = "en";
-        String languageTo = "ru"; // Изменим languageTo, чтобы он отличался от languageFrom
+        String languageTo = "ru";
         String lineToTranslate = "Hello";
 
         // Act

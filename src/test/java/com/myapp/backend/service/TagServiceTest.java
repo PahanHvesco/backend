@@ -87,7 +87,7 @@ class TagServiceTest {
     @Test
     void testAddTranslatorToTag_EmptyTags() {
         // Arrange
-        TagService tagService = Mockito.mock(TagService.class); // Создаем мок объекта TagService
+        TagService tagService = Mockito.mock(TagService.class);
         when(tagService.getAllTag()).thenReturn(new ArrayList<>());
 
         // Act

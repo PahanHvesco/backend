@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
-public class TagControllerTest {
+class TagControllerTest {
 
     private MockMvc mockMvc;
 
@@ -32,21 +32,21 @@ public class TagControllerTest {
     private TagController tagController;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(tagController).build();
     }
 
     @Test
-    public void testAddTagToTranslatorAndTranslatorToTag() throws Exception {
+    void testAddTagToTranslatorAndTranslatorToTag() throws Exception {
         doNothing().when(tagService).addTranslatorToTag(1L, "example");
         mockMvc.perform(post("/tag/add/tags?id=1&name=example"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void testGetTagById() throws Exception {
+    void testGetTagById() throws Exception {
         long tagId = 1L;
-        TagDto tagDto = new TagDto(); // Создайте объект TagDto с нужными данными
+        TagDto tagDto = new TagDto();
         when(tagService.convertEntityToDto(any())).thenReturn(tagDto);
         when(tagService.getTagById(tagId)).thenReturn(new Tag());
 
@@ -56,7 +56,7 @@ public class TagControllerTest {
     }
 
     @Test
-    public void testGetAllTags() throws Exception {
+    void testGetAllTags() throws Exception {
         TagDto tagDto = new TagDto();
         when(tagService.getAllTagDto()).thenReturn(Collections.singletonList(tagDto));
 
@@ -66,7 +66,7 @@ public class TagControllerTest {
     }
 
     @Test
-    public void testCreateTag() throws Exception {
+    void testCreateTag() throws Exception {
         Tag tag = new Tag();
         when(tagService.createTag(any(Tag.class))).thenReturn(tag);
 
@@ -77,20 +77,20 @@ public class TagControllerTest {
     }
 
     @Test
-    public void testCreateHistoryTranslations() throws Exception {
-        List<Tag> tags = Arrays.asList(new Tag(), new Tag()); // Создайте объекты Tag с нужными данными
+    void testCreateHistoryTranslations() throws Exception {
+        List<Tag> tags = Arrays.asList(new Tag(), new Tag());
         doNothing().when(tagService).createTagsBulk(tags);
 
         mockMvc.perform(post("/tag/bulk")
                         .contentType("application/json")
-                        .content("[{}, {}]")) // Замените {} на JSON объекты с нужными данными для создания тегов
+                        .content("[{}, {}]"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void testUpdateTag() throws Exception {
+    void testUpdateTag() throws Exception {
         long tagId = 1L;
-        Tag tag = new Tag(); // Создайте объект Tag с нужными данными
+        Tag tag = new Tag();
         when(tagService.updateTag(eq(tagId), any(Tag.class))).thenReturn(tag);
 
         mockMvc.perform(put("/tag/" + tagId)
@@ -100,7 +100,7 @@ public class TagControllerTest {
     }
 
     @Test
-    public void testDeleteTag() throws Exception {
+    void testDeleteTag() throws Exception {
         long tagId = 1L;
         doNothing().when(tagService).deleteTag(tagId);
 

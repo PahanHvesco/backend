@@ -16,60 +16,60 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DefaultAdviceTest {
+class DefaultAdviceTest {
 
     @InjectMocks
     private DefaultAdvice defaultAdvice;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void testHandleBadRequestErrorException() {
+    void testHandleBadRequestErrorException() {
         BadRequestErrorException exception = new BadRequestErrorException("Bad request");
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.BAD_REQUEST.value(), "Bad request");
         assertEquals(expected, defaultAdvice.handleBadRequestErrorException(exception).getBody());
     }
 
     @Test
-    public void testHandleInternalServerErrorException() {
+    void testHandleInternalServerErrorException() {
         RuntimeException exception = new RuntimeException("Internal Server Error");
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error");
         assertEquals(expected, defaultAdvice.handleInternalServerErrorException(exception).getBody());
     }
 
     @Test
-    public void testHandleResourceNotFoundException() {
+    void testHandleResourceNotFoundException() {
         ResourceNotFoundException exception = new ResourceNotFoundException("Resource not found");
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.NOT_FOUND.value(), "Resource not found");
         assertEquals(expected, defaultAdvice.handleResourceNotFoundException(exception).getBody());
     }
 
     @Test
-    public void testHandleResourceInvalidData() {
+    void testHandleResourceInvalidData() {
         InvalidDataException exception = new InvalidDataException("Resource not found");
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.NOT_FOUND.value(), "Resource not found");
         assertEquals(expected, defaultAdvice.handleResourceNotFoundException(exception).getBody());
     }
 
     @Test
-    public void testHandleNoHandlerFoundException() {
+    void testHandleNoHandlerFoundException() {
         NoHandlerFoundException exception = new NoHandlerFoundException("GET", "/path", null);
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.NOT_FOUND.value(), "No endpoint GET /path.");
         assertEquals(expected, defaultAdvice.handleNoHandlerFoundException(exception).getBody());
     }
 
     @Test
-    public void testHandleMethodNotAllowed() {
+    void testHandleMethodNotAllowed() {
         HttpRequestMethodNotSupportedException exception = new HttpRequestMethodNotSupportedException("POST");
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.METHOD_NOT_ALLOWED.value(), "Request method 'POST' is not supported");
         assertEquals(expected, defaultAdvice.handleMethodNotAllowed(exception).getBody());
     }
 
     @Test
-    public void testHandleMethodArgumentTypeMismatchException() {
+    void testHandleMethodArgumentTypeMismatchException() {
         MethodArgumentTypeMismatchException exception = new MethodArgumentTypeMismatchException(null, null, null, null, null);
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.BAD_REQUEST.value(), "Invalid input!");
         assertEquals(expected, defaultAdvice.handleMethodArgumentTypeMismatchException(exception).getBody());
