@@ -78,25 +78,14 @@ class HistoryTranslationServiceTest {
 
     @Test
     void testGetHistoryTranslationById_notFoundInCache_foundInDB() {
-        // Устанавливаем заглушки для методов existsById и findById у HistoryTranslationRepository
         when(simpleCacheComponent.get(1L)).thenReturn(null);
         when(historyTranslationRepository.existsById(1L)).thenReturn(true);
-
-        // Создаем объект HistoryTranslation и устанавливаем заглушку для метода findById у HistoryTranslationRepository
         HistoryTranslation historyTranslation = new HistoryTranslation();
         when(historyTranslationRepository.findById(1L)).thenReturn(Optional.of(historyTranslation));
-
-        // Вызываем метод сервиса
         HistoryTranslation result = historyTranslationService.getHistoryTranslationById(1L);
-
-        // Проверяем, что метод existsById и findById у HistoryTranslationRepository были вызваны один раз с правильными аргументами
         verify(historyTranslationRepository, times(1)).existsById(1L);
         verify(historyTranslationRepository, times(1)).findById(1L);
-
-        // Проверяем, что метод put у SimpleCacheComponent был вызван один раз с правильными аргументами
         verify(simpleCacheComponent, times(1)).put(1L, historyTranslation);
-
-        // Проверяем, что возвращенный результат равен ожидаемому объекту
         assertEquals(historyTranslation, result);
     }
 
