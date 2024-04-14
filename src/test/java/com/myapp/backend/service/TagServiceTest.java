@@ -52,7 +52,6 @@ class TagServiceTest {
 
     @Test
     void testAddTranslatorToTag_NoMatchingTags() {
-        // Arrange
         ArrayList<Tag> tags = new ArrayList<>();
         tags.add(new Tag(1, "tag1", null));
         tags.add(new Tag(2, "tag2", null));
