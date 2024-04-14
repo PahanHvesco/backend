@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class TranslatorMapperTests {
 
     @Test
-    public void testEntityToDto() {
+    void testEntityToDto() {
         TranslatorMapper mapper = new TranslatorMapper();
 
         long id = 1L;
@@ -26,7 +26,7 @@ class TranslatorMapperTests {
     }
 
     @Test
-    public void testDtoToEntity() {
+    void testDtoToEntity() {
         TranslatorMapper mapper = new TranslatorMapper();
 
         long id = 1L;

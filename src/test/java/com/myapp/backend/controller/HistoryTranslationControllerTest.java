@@ -71,7 +71,7 @@ class HistoryTranslationControllerTest {
     }
 
     @Test
-    public void testGetTranslationsBySourceAndTarget() throws Exception {
+    void testGetTranslationsBySourceAndTarget() throws Exception {
         // Mock service response
         List<TranslatorDto> expectedDtos = List.of(
                 new TranslatorDto(1L, "Hello", "Привет"),

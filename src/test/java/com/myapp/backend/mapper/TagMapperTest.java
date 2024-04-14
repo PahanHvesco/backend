@@ -13,7 +13,7 @@ import java.util.List;
 class TagMapperTests {
 
     @Test
-    public void testEntityToDto() {
+    void testEntityToDto() {
         TagMapper mapper = new TagMapper();
 
         long id = 1L;
@@ -35,7 +35,7 @@ class TagMapperTests {
     }
 
     @Test
-    public void testDtoToEntity() {
+    void testDtoToEntity() {
         TagMapper mapper = new TagMapper();
 
         long id = 1L;

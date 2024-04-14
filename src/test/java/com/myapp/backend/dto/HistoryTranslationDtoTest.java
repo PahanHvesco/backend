@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 class HistoryTranslationDtoTests {
 
     @Test
-    public void testHistoryTranslationDto() {
+    void testHistoryTranslationDto() {
         long id = 1L;
         Timestamp date = new Timestamp(System.currentTimeMillis());
         String source = "source";
