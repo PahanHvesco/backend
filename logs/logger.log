@@ -844,3 +844,34 @@ Caused by: java.lang.IllegalStateException: Failed to replace DataSource with an
 [2024-04-14 11:22:26] INFO  - DELETE endpoint /history/translation/{id} was called.
 [2024-04-14 11:22:26] INFO  - GET endpoint /history/translation/{source}/{target} was called.
 [2024-04-14 11:22:26] INFO  - PUT endpoint /history/translation/{id} was called.
+[2024-04-14 12:43:29] INFO  - Starting BackendApplication using Java 17.0.10 with PID 9680 (C:\Users\Pavel\IdeaProjects\backend\target\classes started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-14 12:43:29] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-14 12:43:29] INFO  - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+[2024-04-14 12:43:29] INFO  - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+[2024-04-14 12:43:30] INFO  - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[2024-04-14 12:43:30] INFO  - Finished Spring Data repository scanning in 77 ms. Found 3 JPA repository interfaces.
+[2024-04-14 12:43:31] INFO  - Tomcat initialized with port 8080 (http)
+[2024-04-14 12:43:31] INFO  - Starting service [Tomcat]
+[2024-04-14 12:43:31] INFO  - Starting Servlet engine: [Apache Tomcat/10.1.19]
+[2024-04-14 12:43:31] INFO  - Initializing Spring embedded WebApplicationContext
+[2024-04-14 12:43:31] INFO  - Root WebApplicationContext: initialization completed in 2591 ms
+[2024-04-14 12:43:31] INFO  - HikariPool-1 - Starting...
+[2024-04-14 12:43:32] INFO  - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@25293063
+[2024-04-14 12:43:32] INFO  - HikariPool-1 - Start completed.
+[2024-04-14 12:43:32] INFO  - HHH000204: Processing PersistenceUnitInfo [name: default]
+[2024-04-14 12:43:32] INFO  - HHH000412: Hibernate ORM core version 6.4.4.Final
+[2024-04-14 12:43:32] INFO  - HHH000026: Second-level cache disabled
+[2024-04-14 12:43:32] INFO  - No LoadTimeWeaver setup: ignoring JPA class transformer
+[2024-04-14 12:43:33] INFO  - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2024-04-14 12:43:33] INFO  - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-14 12:43:34] INFO  - Hibernate is in classpath; If applicable, HQL parser will be used.
+[2024-04-14 12:43:36] INFO  - LiveReload server is running on port 35729
+[2024-04-14 12:43:36] INFO  - Tomcat started on port 8080 (http) with context path ''
+[2024-04-14 12:43:36] INFO  - Started BackendApplication in 7.622 seconds (process running for 8.272)
+[2024-04-14 13:24:39] INFO  - Starting HistoryTranslationControllerTest using Java 17.0.10 with PID 17756 (started by Pavel in C:\Users\Pavel\IdeaProjects\backend)
+[2024-04-14 13:24:39] INFO  - No active profile set, falling back to 1 default profile: "default"
+[2024-04-14 13:24:43] INFO  - Initializing Spring TestDispatcherServlet ''
+[2024-04-14 13:24:43] INFO  - Initializing Servlet ''
+[2024-04-14 13:24:43] INFO  - Completed initialization in 3 ms
+[2024-04-14 13:24:44] INFO  - Started HistoryTranslationControllerTest in 4.612 seconds (process running for 6.096)
+[2024-04-14 13:24:44] INFO  - GET endpoint /history/translation/{id} was called.

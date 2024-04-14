@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -31,6 +32,20 @@ public class HistoryTranslationControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Test
+    public void testGetHistoryTranslationById() throws Exception {
+        long id = 1L;
+        HistoryTranslationDto expectedDto = new HistoryTranslationDto();
+        expectedDto.setId(id);
+
+        when(historyTranslationService.convertEntityToDto(any())).thenReturn(expectedDto);
+        when(historyTranslationService.getHistoryTranslationById(id)).thenReturn(new HistoryTranslation());
+
+        mockMvc.perform(get("/history/translation/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1));
+    }
 
     @Test
     public void testGetAllHistoryTranslations() throws Exception {
