@@ -3,6 +3,7 @@ package com.myapp.backend.advice;
 
 import com.myapp.backend.advice.DefaultAdvice.ExceptionMessage;
 import com.myapp.backend.exception.BadRequestErrorException;
+import com.myapp.backend.exception.InvalidDataException;
 import com.myapp.backend.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,13 @@ public class DefaultAdviceTest {
     @Test
     public void testHandleResourceNotFoundException() {
         ResourceNotFoundException exception = new ResourceNotFoundException("Resource not found");
+        ExceptionMessage expected = new ExceptionMessage(HttpStatus.NOT_FOUND.value(), "Resource not found");
+        assertEquals(expected, defaultAdvice.handleResourceNotFoundException(exception).getBody());
+    }
+
+    @Test
+    public void testHandleResourceInvalidData() {
+        InvalidDataException exception = new InvalidDataException("Resource not found");
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.NOT_FOUND.value(), "Resource not found");
         assertEquals(expected, defaultAdvice.handleResourceNotFoundException(exception).getBody());
     }
