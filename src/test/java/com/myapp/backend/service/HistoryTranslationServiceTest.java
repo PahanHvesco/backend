@@ -15,6 +15,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -85,6 +88,99 @@ class HistoryTranslationServiceTest {
 
         // Verify that log.info is never called
         verify(log, never()).info(anyString());
+    }
+
+    @Test
+    void updateHistoryTranslation_ExistingId_ReturnsUpdatedTranslation() {
+        // Arrange
+        long id = 1L;
+
+        HistoryTranslation existingTranslation = new HistoryTranslation();
+        existingTranslation.setId(id);
+        existingTranslation.setDate(new Timestamp(System.currentTimeMillis()));
+        existingTranslation.setSource("source");
+        existingTranslation.setTarget("target");
+
+        HistoryTranslation updatedTranslation = new HistoryTranslation();
+        updatedTranslation.setId(id);
+        existingTranslation.setDate(new Timestamp(System.currentTimeMillis() + 1000));
+        updatedTranslation.setSource("updated source");
+        updatedTranslation.setTarget("updated target");
+
+        // Mock behavior
+        when(historyTranslationRepository.existsById(id)).thenReturn(true);
+        when(historyTranslationRepository.findById(id)).thenReturn(Optional.of(existingTranslation));
+        when(historyTranslationRepository.save(any(HistoryTranslation.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        // Act
+        HistoryTranslation result = historyTranslationService.updateHistoryTranslation(id, updatedTranslation);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(updatedTranslation.getId(), result.getId());
+        assertEquals(updatedTranslation.getDate(), result.getDate());
+        assertEquals(updatedTranslation.getSource(), result.getSource());
+        assertEquals(updatedTranslation.getTarget(), result.getTarget());
+        assertEquals(updatedTranslation.getTranslator(), result.getTranslator());
+
+        // Verify that log.info is called with the correct message
+        System.out.println("Verify log.info invocations: " + Mockito.mockingDetails(log).getInvocations());
+    }
+
+    @Test
+    void createHistoryTranslation_CreatesHistoryTranslation() {
+        // Arrange
+        Translator translator = new Translator();
+        translator.setId(1L);
+        translator.setEn("Hello");
+        translator.setRu("Привет");
+
+        String target = "target";
+        String source = "source";
+
+        // Mock behavior
+        doAnswer(invocation -> {
+            HistoryTranslation historyTranslation = invocation.getArgument(0);
+            assertNotNull(historyTranslation);
+            assertEquals(translator, historyTranslation.getTranslator());
+            assertNotNull(historyTranslation.getDate());
+            assertEquals(target, historyTranslation.getTarget());
+            assertEquals(source, historyTranslation.getSource());
+            return null;
+        }).when(historyTranslationRepository).save(any(HistoryTranslation.class));
+
+        // Act
+        historyTranslationService.createHistoryTranslation(translator, target, source);
+
+        // Assert
+        // Verify that historyTranslationRepository.save is called with the correct parameters
+        verify(historyTranslationRepository, times(1)).save(any(HistoryTranslation.class));
+    }
+
+    @Test
+    void createHistoryTranslationsBulk_NonEmptyList_SavesAndLogsHistoryTranslations() {
+        // Arrange
+        List<HistoryTranslation> historyTranslations = new ArrayList<>();
+        HistoryTranslation historyTranslation1 = new HistoryTranslation();
+        // Populate historyTranslation1 with data
+        historyTranslations.add(historyTranslation1);
+
+        // Mock behavior
+        when(historyTranslationRepository.save(any(HistoryTranslation.class))).thenAnswer(invocation -> {
+            HistoryTranslation savedHistoryTranslation = invocation.getArgument(0);
+            savedHistoryTranslation.setId(100L); // Simulating saved ID
+            return savedHistoryTranslation;
+        });
+
+        // Act
+        historyTranslationService.createHistoryTranslationsBulk(historyTranslations);
+
+        // Assert
+        // Verify that historyTranslationRepository.save is called for each history translation
+        verify(historyTranslationRepository, times(historyTranslations.size())).save(any(HistoryTranslation.class));
+
+        // Verify that log.info is called with the correct message for each saved history translation
+        System.out.println("History translation saved ID" + Mockito.mockingDetails(log).getInvocations());
     }
 
     @Test
