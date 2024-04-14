@@ -5,7 +5,7 @@ import com.myapp.backend.exception.BadRequestErrorException;
 import com.myapp.backend.exception.InvalidDataException;
 import com.myapp.backend.exception.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
@@ -26,7 +25,7 @@ import java.time.format.DateTimeParseException;
 @RestControllerAdvice
 @Log4j2
 public final class DefaultAdvice {
-    @Data
+    @Getter
     @AllArgsConstructor
     public static class ExceptionMessage {
         private int httpStatus;
