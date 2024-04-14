@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
@@ -38,6 +39,53 @@ class TagServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    void testAddTranslatorToTag_EmptyTags() {
+        // Arrange
+        TagService tagService = Mockito.mock(TagService.class); // Создаем мок объекта TagService
+        when(tagService.getAllTag()).thenReturn(new ArrayList<>());
+
+        // Act
+        tagService.addTranslatorToTag(1L, "exampleTag");
+
+        // Assert - Verify that no interactions with tagService or translatorService occurred
+    }
+
+    @Test
+    void testAddTranslatorToTag_TagNotFound() {
+        // Arrange
+        List<Tag> tags = new ArrayList<>();
+        tags.add(new Tag(1L, "tag1", new ArrayList<>()));
+        tags.add(new Tag(2L, "tag2", new ArrayList<>()));
+        when(tagService.getAllTag()).thenReturn(tags);
+
+        // Act
+        tagService.addTranslatorToTag(1L, "exampleTag");
+
+        // Assert - Verify that no interactions with tagService or translatorService occurred
+        verifyNoInteractions(translatorService);
+    }
+
+    @Test
+    void testAddTranslatorToTag_TagFound() {
+        // Arrange
+        long translatorId = 1L;
+        String tagName = "exampleTag";
+        List<Tag> tags = new ArrayList<>();
+        List<Translator> translators = new ArrayList<>();
+        Translator translator = new Translator(translatorId, "TranslatorName", "TranslatorLanguage", null, null);
+        translators.add(translator);
+        tags.add(new Tag(1L, tagName, translators));
+        when(tagService.getAllTag()).thenReturn(tags);
+        when(translatorService.getTranslatorById(translatorId)).thenReturn(translator);
+
+        // Act
+        tagService.addTranslatorToTag(translatorId, tagName);
+
+        // Assert - Verify that updateTag method was called with correct parameters
+        verify(tagService).updateTag(1L, tags.get(0));
     }
 
     @Test
