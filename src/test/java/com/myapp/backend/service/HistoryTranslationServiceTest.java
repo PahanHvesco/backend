@@ -12,11 +12,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -25,6 +27,9 @@ import static org.mockito.Mockito.*;
 class HistoryTranslationServiceTest {
     @Mock
     private HistoryTranslationRepository historyTranslationRepository;
+
+    @Mock
+    private Logger log;
 
     @Mock
     private HistoryTranslationMapper historyTranslationMapper;
@@ -38,6 +43,48 @@ class HistoryTranslationServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    void deleteHistoryTranslationById_ExistingId_RemovesFromCacheAndDeletesFromRepository() {
+        // Arrange
+        long id = 1L;
+
+        // Mock behavior
+        when(historyTranslationRepository.existsById(id)).thenReturn(true);
+
+        // Act
+        historyTranslationService.deleteHistoryTranslationById(id);
+
+        // Assert and verify
+        verify(simpleCacheComponent, times(1)).remove(id);
+        verify(historyTranslationRepository, times(1)).deleteById(id);
+
+        // Debugging statements
+        System.out.println("Verify log.info invocations: " + Mockito.mockingDetails(log).getInvocations());
+    }
+
+    @Test
+    void deleteHistoryTranslationById_NonExistingId_ThrowsResourceNotFoundException() {
+        // Arrange
+        Long nonExistingId = 1L;
+
+        // Mock the behavior of historyTranslationRepository.existsById() to return false
+        when(historyTranslationRepository.existsById(nonExistingId)).thenReturn(false);
+
+        // Act and Assert
+        assertThrows(ResourceNotFoundException.class, () -> {
+            historyTranslationService.deleteHistoryTranslationById(nonExistingId);
+        });
+
+        // Verify that simpleCacheComponent.remove is never called
+        verify(simpleCacheComponent, never()).remove(anyLong());
+
+        // Verify that historyTranslationRepository.deleteById is never called
+        verify(historyTranslationRepository, never()).deleteById(anyLong());
+
+        // Verify that log.info is never called
+        verify(log, never()).info(anyString());
     }
 
     @Test
