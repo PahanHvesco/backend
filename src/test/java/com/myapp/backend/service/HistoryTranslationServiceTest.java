@@ -2,14 +2,11 @@ package com.myapp.backend.service;
 
 import com.myapp.backend.component.SimpleCacheComponent;
 import com.myapp.backend.dto.HistoryTranslationDto;
-import com.myapp.backend.dto.TagDto;
 import com.myapp.backend.dto.TranslatorDto;
 import com.myapp.backend.mapper.HistoryTranslationMapper;
-import com.myapp.backend.mapper.TagMapper;
 import com.myapp.backend.model.HistoryTranslation;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.HistoryTranslationRepository;
-import com.myapp.backend.repository.TagRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
