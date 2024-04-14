@@ -6,18 +6,15 @@ import com.myapp.backend.exception.BadRequestErrorException;
 import com.myapp.backend.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(SpringExtension.class)
 public class DefaultAdviceTest {
 
     @InjectMocks
@@ -68,5 +65,12 @@ public class DefaultAdviceTest {
         MethodArgumentTypeMismatchException exception = new MethodArgumentTypeMismatchException(null, null, null, null, null);
         ExceptionMessage expected = new ExceptionMessage(HttpStatus.BAD_REQUEST.value(), "Invalid input!");
         assertEquals(expected, defaultAdvice.handleMethodArgumentTypeMismatchException(exception).getBody());
+    }
+
+    @Test
+    public void testExceptionMessage() {
+        DefaultAdvice.ExceptionMessage exceptionMessage = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+        assertEquals(404, exceptionMessage.getHttpStatus());
+        assertEquals("Not Found", exceptionMessage.getMessage());
     }
 }

@@ -875,3 +875,6 @@ Caused by: java.lang.IllegalStateException: Failed to replace DataSource with an
 [2024-04-14 13:24:43] INFO  - Completed initialization in 3 ms
 [2024-04-14 13:24:44] INFO  - Started HistoryTranslationControllerTest in 4.612 seconds (process running for 6.096)
 [2024-04-14 13:24:44] INFO  - GET endpoint /history/translation/{id} was called.
+[2024-04-14 13:34:25] INFO  - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2024-04-14 13:34:25] INFO  - HikariPool-1 - Shutdown initiated...
+[2024-04-14 13:34:25] INFO  - HikariPool-1 - Shutdown completed.
