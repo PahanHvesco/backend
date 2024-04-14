@@ -42,6 +42,7 @@ class TagServiceTest {
     }
 
     @Test
+    @SuppressWarnings("squid:S2699")
     void testAddTranslatorToTag_EmptyTagList() {
         // Arrange
         when(tagRepository.findAll()).thenReturn(new ArrayList<>());
@@ -67,6 +68,7 @@ class TagServiceTest {
     }
 
     @Test
+    @SuppressWarnings("squid:S2699")
     void testAddTranslatorToTag_MatchingTagsExist() {
         Tag matchingTag1 = new Tag(1, "exampleTag", null);
         Tag matchingTag2 = new Tag(2, "exampleTag", null);
@@ -85,6 +87,7 @@ class TagServiceTest {
     }
 
     @Test
+    @SuppressWarnings("squid:S2699")
     void testAddTranslatorToTag_EmptyTags() {
         // Arrange
         TagService tagService = Mockito.mock(TagService.class);
@@ -112,6 +115,7 @@ class TagServiceTest {
     }
 
     @Test
+    @SuppressWarnings("squid:S2699")
     void testAddTranslatorToTag_TagFound() {
         // Arrange
         long translatorId = 1L;
