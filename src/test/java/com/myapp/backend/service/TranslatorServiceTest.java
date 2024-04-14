@@ -2,6 +2,7 @@ package com.myapp.backend.service;
 
 import com.myapp.backend.component.SimpleCacheComponent;
 import com.myapp.backend.dto.TranslatorDto;
+import com.myapp.backend.exception.InvalidDataException;
 import com.myapp.backend.mapper.TranslatorMapper;
 import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TranslatorRepository;
@@ -12,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +39,83 @@ class TranslatorServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    void testTranslate_LanguageToAndLanguageFromTheSame() {
+        String languageFrom = "en";
+        String languageTo = "en";
+        String lineToTranslate = "Hello";
+
+        assertThrows(InvalidDataException.class, () -> translatorService.translate(languageFrom, languageTo, lineToTranslate));
+    }
+
+    @Test
+    void testTranslate_TranslatorDTOFoundInRepository() {
+        String languageFrom = "en";
+        String languageTo = "ru";
+        String lineToTranslate = "Hello";
+
+        Translator translator = new Translator();
+        translator.setId(1);
+        translator.setEn("Hello");
+        translator.setRu("Привет");
+
+        when(translatorRepository.findAll()).thenReturn(List.of(translator));
+
+        TranslatorDto result = translatorService.translate(languageFrom, languageTo, lineToTranslate);
+
+        assertEquals(1, result.getId());
+        assertEquals("Hello", result.getEn());
+        assertEquals("Привет", result.getRu());
+        verify(historyTranslationService, never()).createHistoryTranslation(any(), any(), any());
+    }
+
+    @Test
+    void testSearchByTable_TranslatorFoundByRu() {
+        String lineToTranslate = "Привет";
+        Translator translator = new Translator();
+        translator.setId(1);
+        translator.setEn("Hello");
+        translator.setRu(lineToTranslate);
+
+        when(translatorRepository.findAll()).thenReturn(List.of(translator));
+
+        TranslatorDto result = translatorService.searchByTable(lineToTranslate);
+
+        assertNotNull(result);
+        assertEquals(1, result.getId());
+        assertEquals("Hello", result.getEn());
+        assertEquals("Привет", result.getRu());
+    }
+
+    @Test
+    void testSearchByTable_TranslatorFoundByEn() {
+        String lineToTranslate = "Hello";
+        Translator translator = new Translator();
+        translator.setId(1);
+        translator.setEn(lineToTranslate);
+        translator.setRu("Привет");
+
+        when(translatorRepository.findAll()).thenReturn(List.of(translator));
+
+        TranslatorDto result = translatorService.searchByTable(lineToTranslate);
+
+        assertNotNull(result);
+        assertEquals(1, result.getId());
+        assertEquals("Hello", result.getEn());
+        assertEquals("Привет", result.getRu());
+    }
+
+    @Test
+    void testSearchByTable_TranslatorNotFound() {
+        String lineToTranslate = "Hello";
+
+        when(translatorRepository.findAll()).thenReturn(new ArrayList<>());
+
+        TranslatorDto result = translatorService.searchByTable(lineToTranslate);
+
+        assertNull(result);
     }
 
     @Test
