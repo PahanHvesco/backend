@@ -34,6 +34,9 @@ class TranslatorServiceTest {
     private TranslatorMapper translatorMapper;
 
     @Mock
+    private Translator translator;
+
+    @Mock
     private HistoryTranslationService historyTranslationService;
 
     @BeforeEach
@@ -48,6 +51,30 @@ class TranslatorServiceTest {
         String lineToTranslate = "Hello";
 
         assertThrows(InvalidDataException.class, () -> translatorService.translate(languageFrom, languageTo, lineToTranslate));
+    }
+
+    @Test
+    void testTranslate_SameLanguage() {
+        String language = "en";
+        String lineToTranslate = "Hello";
+
+        assertThrows(InvalidDataException.class, () -> translatorService.translate(language, language, lineToTranslate));
+    }
+
+    @Test
+    void testTranslate_LineInRepository() {
+        String languageFrom = "ru";
+        String languageTo = "en";
+        String lineToTranslate = "Привет";
+        Translator translator = new Translator(1, "Привет", "Hello", null, null);
+        when(translatorRepository.findAll()).thenReturn(List.of(translator));
+
+        TranslatorDto result = translatorService.translate(languageFrom, languageTo, lineToTranslate);
+
+        assertEquals(translator.getId(), result.getId());
+        assertEquals(translator.getEn(), result.getEn());
+        assertEquals(translator.getRu(), result.getRu());
+        verifyNoInteractions(historyTranslationService);
     }
 
     @Test
