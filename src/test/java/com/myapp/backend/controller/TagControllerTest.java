@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.myapp.backend.dto.TagDto;
-import org.springframework.http.MediaType;
 import com.myapp.backend.model.Tag;
 import com.myapp.backend.service.TagService;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,13 +38,9 @@ public class TagControllerTest {
 
     @Test
     public void testAddTagToTranslatorAndTranslatorToTag() throws Exception {
-        long translatorId = 4L;
-        String nameTag = "translation";
-
-        mockMvc.perform(post("/add/tags")
-                        .param("id", String.valueOf(translatorId))
-                        .param("name", nameTag)
-                        .contentType(MediaType.APPLICATION_JSON));
+        doNothing().when(tagService).addTranslatorToTag(1L, "example");
+        mockMvc.perform(post("/tag/add/tags?id=1&name=example"))
+                .andExpect(status().isOk());
     }
 
     @Test
