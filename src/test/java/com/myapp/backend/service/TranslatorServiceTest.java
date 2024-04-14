@@ -78,6 +78,22 @@ class TranslatorServiceTest {
     }
 
     @Test
+    void testTranslate_NoTranslationNeeded() {
+        // Arrange
+        String languageFrom = "en";
+        String languageTo = "ru"; // Изменим languageTo, чтобы он отличался от languageFrom
+        String lineToTranslate = "Hello";
+
+        // Act
+        TranslatorDto result = translatorService.translate(languageFrom, languageTo, lineToTranslate);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals("Hello", result.getEn());
+        assertEquals("Hello", result.getEn());
+    }
+
+    @Test
     void testTranslate_TranslatorDTOFoundInRepository() {
         String languageFrom = "en";
         String languageTo = "ru";
