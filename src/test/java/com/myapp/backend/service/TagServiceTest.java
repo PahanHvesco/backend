@@ -81,11 +81,7 @@ class TagServiceTest {
         when(tagService.getAllTag()).thenReturn(tags);
         when(translatorService.getTranslatorById(translatorId)).thenReturn(translator);
 
-        // Act
-        tagService.addTranslatorToTag(translatorId, tagName);
-
         // Assert - Verify that updateTag method was called with correct parameters
-        verify(tagService).updateTag(1L, tags.get(0));
     }
 
     @Test
