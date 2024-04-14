@@ -4,6 +4,7 @@ import com.myapp.backend.component.SimpleCacheComponent;
 import com.myapp.backend.dto.TagDto;
 import com.myapp.backend.mapper.TagMapper;
 import com.myapp.backend.model.Tag;
+import com.myapp.backend.model.Translator;
 import com.myapp.backend.repository.TagRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,21 @@ class TagServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    void addTranslatorToTag_TagDoesNotExist_NoTranslatorAdded() {
+        // Arrange
+        long translatorId = 1L;
+        String nonExistentTagName = "nonExistentTag";
+
+        when(tagRepository.findAll()).thenReturn(new ArrayList<>());
+
+        // Act
+        tagService.addTranslatorToTag(translatorId, nonExistentTagName); // Correct method call
+
+        // Assert
+        verify(tagRepository, never()).save(any());
     }
 
     @Test
