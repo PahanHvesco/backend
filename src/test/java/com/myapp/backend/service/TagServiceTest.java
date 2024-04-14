@@ -42,6 +42,51 @@ class TagServiceTest {
     }
 
     @Test
+    void testAddTranslatorToTag_EmptyTagList() {
+        // Arrange
+        when(tagRepository.findAll()).thenReturn(new ArrayList<>());
+
+        // Act
+        tagService.addTranslatorToTag(1L, "exampleTag");
+    }
+
+    @Test
+    void testAddTranslatorToTag_NoMatchingTags() {
+        // Arrange
+        ArrayList<Tag> tags = new ArrayList<>();
+        tags.add(new Tag(1, "tag1", null));
+        tags.add(new Tag(2, "tag2", null));
+        when(tagRepository.findAll()).thenReturn(tags);
+
+        // Act
+        tagService.addTranslatorToTag(1L, "exampleTag");
+
+        // Assert
+        verifyNoInteractions(translatorService);
+        verify(tagRepository, times(1)).findAll();
+        verifyNoMoreInteractions(tagRepository);
+    }
+
+    @Test
+    void testAddTranslatorToTag_MatchingTagsExist() {
+        // Arrange
+        Tag matchingTag1 = new Tag(1, "exampleTag", null);
+        Tag matchingTag2 = new Tag(2, "exampleTag", null);
+        Tag nonMatchingTag = new Tag(3, "otherTag", null);
+        ArrayList<Tag> tags = new ArrayList<>();
+        tags.add(matchingTag1);
+        tags.add(matchingTag2);
+        tags.add(nonMatchingTag);
+        when(tagRepository.findAll()).thenReturn(tags);
+        when(translatorService.getTranslatorById(1L)).thenReturn(new Translator());
+
+        // Act
+
+        // Assert
+
+    }
+
+    @Test
     void testAddTranslatorToTag_EmptyTags() {
         // Arrange
         TagService tagService = Mockito.mock(TagService.class); // Создаем мок объекта TagService
