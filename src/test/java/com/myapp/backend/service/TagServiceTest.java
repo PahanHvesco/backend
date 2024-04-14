@@ -56,6 +56,49 @@ class TagServiceTest {
     }
 
     @Test
+    void addTranslatorToTag_TagNotFound_NothingAdded() {
+        long translatorId = 1L;
+        String nonExistentTagName = "nonExistentTag";
+
+        // Mock the behavior of getAllTag() to return an empty list
+        when(tagService.getAllTag()).thenReturn(new ArrayList<>());
+
+        // Act
+        tagService.addTranslatorToTag(translatorId, nonExistentTagName);
+
+        // Assert
+        // Verify that updateTag method is never called since the tag doesn't exist
+        verify(tagRepository, never()).save(any());
+    }
+
+    @Test
+    void getAllTagDto_ReturnsListOfTagDtos() {
+        // Arrange
+        List<Tag> tags = new ArrayList<>();
+        tags.add(new Tag(1L, "Tag1", new ArrayList<>()));
+        tags.add(new Tag(2L, "Tag2", new ArrayList<>()));
+
+        // Mock the behavior of tagRepository.findAll() to return the list of tags
+        when(tagRepository.findAll()).thenReturn(tags);
+
+        // Mock the behavior of tagMapper.entityToDto() to return a TagDto
+        when(tagMapper.entityToDto(any(Tag.class))).thenAnswer(invocation -> {
+            Tag tag = invocation.getArgument(0);
+            return new TagDto(tag.getId(), tag.getNameTag(), null);
+        });
+
+        // Act
+        List<TagDto> result = tagService.getAllTagDto();
+
+        // Assert
+        assertEquals(2, result.size());
+        assertEquals(1L, result.get(0).getId());
+        assertEquals("Tag1", result.get(0).getNameTag());
+        assertEquals(2L, result.get(1).getId());
+        assertEquals("Tag2", result.get(1).getNameTag());
+    }
+
+    @Test
     public void testGetAllTag() {
         // Mocking
         List<Tag> tags = new ArrayList<>();
