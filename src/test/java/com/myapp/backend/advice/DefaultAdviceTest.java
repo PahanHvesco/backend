@@ -15,7 +15,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DefaultAdviceTest {
 
@@ -77,9 +76,20 @@ public class DefaultAdviceTest {
     }
 
     @Test
-    public void testExceptionMessage() {
+    void testExceptionMessageConstructor() {
+        // Проверяем корректность конструктора класса ExceptionMessage
         DefaultAdvice.ExceptionMessage exceptionMessage = new DefaultAdvice.ExceptionMessage(404, "Not Found");
         assertEquals(404, exceptionMessage.getHttpStatus());
         assertEquals("Not Found", exceptionMessage.getMessage());
+    }
+
+    @Test
+    void testExceptionMessageSetterGetter() {
+        // Проверяем корректность сеттеров и геттеров класса ExceptionMessage
+        DefaultAdvice.ExceptionMessage exceptionMessage = new DefaultAdvice.ExceptionMessage();
+        exceptionMessage.setHttpStatus(500);
+        exceptionMessage.setMessage("Internal Server Error");
+        assertEquals(500, exceptionMessage.getHttpStatus());
+        assertEquals("Internal Server Error", exceptionMessage.getMessage());
     }
 }
