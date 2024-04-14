@@ -69,7 +69,6 @@ class TagServiceTest {
 
     @Test
     void testAddTranslatorToTag_MatchingTagsExist() {
-        // Arrange
         Tag matchingTag1 = new Tag(1, "exampleTag", null);
         Tag matchingTag2 = new Tag(2, "exampleTag", null);
         Tag nonMatchingTag = new Tag(3, "otherTag", null);
