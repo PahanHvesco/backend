@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 class HistoryTranslationMapperTests {
 
     @Test
-    public void testEntityToDto() {
+    void testEntityToDto() {
         HistoryTranslationMapper mapper = new HistoryTranslationMapper();
 
         long id = 1L;
@@ -29,7 +29,7 @@ class HistoryTranslationMapperTests {
     }
 
     @Test
-    public void testDtoToEntity() {
+    void testDtoToEntity() {
         HistoryTranslationMapper mapper = new HistoryTranslationMapper();
 
         long id = 1L;

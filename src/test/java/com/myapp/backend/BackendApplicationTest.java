@@ -5,7 +5,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.springframework.boot.SpringApplication;
 
-public class BackendApplicationTest {
+class BackendApplicationTest {
 
     @Test
     void testMain() {

@@ -294,7 +294,7 @@ class HistoryTranslationServiceTest {
 
 
     @Test
-    public void testConvertEntityToDto() {
+    void testConvertEntityToDto() {
         // Mocking
         HistoryTranslation historyTranslation = new HistoryTranslation();
         when(historyTranslationMapper.entityToDto(historyTranslation)).thenReturn(new HistoryTranslationDto());
@@ -307,7 +307,7 @@ class HistoryTranslationServiceTest {
     }
 
     @Test
-    public void testConvertDtoToEntity() {
+    void testConvertDtoToEntity() {
         // Mocking
         HistoryTranslationDto historyTranslationDto = new HistoryTranslationDto();
         when(historyTranslationMapper.dtoToEntity(historyTranslationDto)).thenReturn(new HistoryTranslation());
