@@ -113,4 +113,26 @@ public class DefaultAdviceTest {
         // Проверяем метод toString()
         assertEquals("DefaultAdvice.ExceptionMessage(httpStatus=404, message=Not Found)", message.toString());
     }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        // Создаем два объекта ExceptionMessage с одинаковыми значениями
+        DefaultAdvice.ExceptionMessage message1 = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+        DefaultAdvice.ExceptionMessage message2 = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+
+        // Проверяем, что объекты равны
+        assertEquals(message1, message2);
+        assertEquals(message1.hashCode(), message2.hashCode());
+    }
+
+    @Test
+    public void testNotEqualsAndHashCode() {
+        // Создаем два объекта ExceptionMessage с разными значениями
+        DefaultAdvice.ExceptionMessage message1 = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+        DefaultAdvice.ExceptionMessage message2 = new DefaultAdvice.ExceptionMessage(500, "Internal Server Error");
+
+        // Проверяем, что объекты не равны
+        assertNotEquals(message1, message2);
+        assertNotEquals(message1.hashCode(), message2.hashCode());
+    }
 }
