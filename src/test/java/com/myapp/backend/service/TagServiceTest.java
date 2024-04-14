@@ -37,7 +37,7 @@ class TagServiceTest {
     private TranslatorService translatorService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
@@ -186,7 +186,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testGetAllTag() {
+    void testGetAllTag() {
         // Mocking
         List<Tag> tags = new ArrayList<>();
         tags.add(new Tag());
@@ -201,7 +201,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testGetTagById() {
+    void testGetTagById() {
         // Mocking
         long id = 1L;
         Tag tag = new Tag();
@@ -219,7 +219,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testCreateTag() {
+    void testCreateTag() {
         // Mocking
         Tag tag = new Tag();
         when(tagRepository.save(tag)).thenReturn(tag);
@@ -233,7 +233,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testCreateTagsBulk() {
+    void testCreateTagsBulk() {
         // Mocking
         List<Tag> tags = new ArrayList<>();
         Tag tag = new Tag();
@@ -248,7 +248,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testDeleteTag() {
+    void testDeleteTag() {
         // Mocking
         long id = 1L;
         when(tagRepository.existsById(id)).thenReturn(true);
@@ -262,7 +262,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testUpdateTag() {
+    void testUpdateTag() {
         // Mocking
         long id = 1L;
         Tag updatedTag = new Tag();
@@ -277,7 +277,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testConvertEntityToDto() {
+    void testConvertEntityToDto() {
         // Mocking
         Tag tag = new Tag();
         when(tagMapper.entityToDto(tag)).thenReturn(new TagDto());
@@ -290,7 +290,7 @@ class TagServiceTest {
     }
 
     @Test
-    public void testConvertDtoToEntity() {
+    void testConvertDtoToEntity() {
         // Mocking
         TagDto tagDto = new TagDto();
         when(tagMapper.dtoToEntity(tagDto)).thenReturn(new Tag());

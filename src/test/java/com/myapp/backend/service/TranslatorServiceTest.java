@@ -162,7 +162,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testSearchByTable() {
+    void testSearchByTable() {
         // Mocking
         String lineToTranslate = "Hello";
         Translator translator = new Translator();
@@ -181,7 +181,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testCreateTranslator() {
+    void testCreateTranslator() {
         // Mocking
         Translator translator = new Translator();
         when(translatorRepository.save(translator)).thenReturn(translator);
@@ -195,7 +195,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testCreateTranslatorsBulk() {
+    void testCreateTranslatorsBulk() {
         // Mocking
         List<Translator> translators = new ArrayList<>();
         Translator translator = new Translator();
@@ -210,7 +210,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testGetAllTranslators() {
+    void testGetAllTranslators() {
         // Mocking
         List<Translator> translators = new ArrayList<>();
         translators.add(new Translator());
@@ -225,7 +225,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testGetAllTranslatorsDto() {
+    void testGetAllTranslatorsDto() {
         // Mocking
         List<Translator> translators = new ArrayList<>();
         translators.add(new Translator());
@@ -241,7 +241,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testGetTranslatorById() {
+    void testGetTranslatorById() {
         // Mocking
         long id = 1L;
         Translator translator = new Translator();
@@ -259,7 +259,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testUpdateTranslator() {
+    void testUpdateTranslator() {
         // Mocking
         long id = 1L;
         Translator updatedTranslator = new Translator();
@@ -274,7 +274,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testDeleteTranslatorById() {
+    void testDeleteTranslatorById() {
         // Mocking
         long id = 1L;
         Translator translator = new Translator();
@@ -290,7 +290,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testConvertEntityToDto() {
+    void testConvertEntityToDto() {
         // Mocking
         Translator translator = new Translator();
         when(translatorMapper.entityToDto(translator)).thenReturn(new TranslatorDto());
@@ -303,7 +303,7 @@ class TranslatorServiceTest {
     }
 
     @Test
-    public void testConvertDtoToEntity() {
+    void testConvertDtoToEntity() {
         // Mocking
         TranslatorDto translatorDto = new TranslatorDto();
         when(translatorMapper.dtoToEntity(translatorDto)).thenReturn(new Translator());
