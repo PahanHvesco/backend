@@ -15,6 +15,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DefaultAdviceTest {
 
@@ -80,5 +81,36 @@ public class DefaultAdviceTest {
         DefaultAdvice.ExceptionMessage exceptionMessage = new DefaultAdvice.ExceptionMessage(404, "Not Found");
         assertEquals(404, exceptionMessage.getHttpStatus());
         assertEquals("Not Found", exceptionMessage.getMessage());
+    }
+
+    @Test
+    public void testEquality() {
+        // Создаем два объекта ExceptionMessage с одинаковыми значениями
+        DefaultAdvice.ExceptionMessage message1 = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+        DefaultAdvice.ExceptionMessage message2 = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+
+        // Проверяем, что объекты равны
+        assertEquals(message1, message2);
+        assertEquals(message1.hashCode(), message2.hashCode());
+    }
+
+    @Test
+    public void testInequality() {
+        // Создаем два объекта ExceptionMessage с разными значениями
+        DefaultAdvice.ExceptionMessage message1 = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+        DefaultAdvice.ExceptionMessage message2 = new DefaultAdvice.ExceptionMessage(500, "Internal Server Error");
+
+        // Проверяем, что объекты не равны
+        assertNotEquals(message1, message2);
+        assertNotEquals(message1.hashCode(), message2.hashCode());
+    }
+
+    @Test
+    public void testToString() {
+        // Создаем объект ExceptionMessage
+        DefaultAdvice.ExceptionMessage message = new DefaultAdvice.ExceptionMessage(404, "Not Found");
+
+        // Проверяем метод toString()
+        assertEquals("DefaultAdvice.ExceptionMessage(httpStatus=404, message=Not Found)", message.toString());
     }
 }
