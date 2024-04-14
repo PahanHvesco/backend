@@ -25,7 +25,6 @@ import java.time.format.DateTimeParseException;
 @Log4j2
 public final class DefaultAdvice {
     @Data
-    @NoArgsConstructor
     @AllArgsConstructor
     public static class ExceptionMessage {
         private int httpStatus;
