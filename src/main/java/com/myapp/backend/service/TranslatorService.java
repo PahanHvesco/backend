@@ -33,14 +33,18 @@ public final class TranslatorService {
         }
         TranslatorDto translatorDTO = searchByTable(lineToTranslate);
         if (translatorDTO == null) {
-            String lineTranslate = net.suuft.libretranslate.Translator.translate(languageFrom, languageTo, lineToTranslate);
+            String lineTranslate = net.suuft.libretranslate.Translator.translate(languageFrom,
+                    languageTo, lineToTranslate);
             if (languageFrom.equals("ru") && languageTo.equals("en")) {
                 translatorDTO = new TranslatorDto(0, lineTranslate, lineToTranslate);
-                historyTranslationService.createHistoryTranslation(createTranslator(translatorMapper.dtoToEntity(translatorDTO)), languageTo, languageFrom);
             } else if (languageFrom.equals("en") && languageTo.equals("ru")) {
                 translatorDTO = new TranslatorDto(0, lineToTranslate, lineTranslate);
-                historyTranslationService.createHistoryTranslation(createTranslator(translatorMapper.dtoToEntity(translatorDTO)), languageTo, languageFrom);
             }
+        }
+        if (translatorDTO != null) {
+            historyTranslationService.createHistoryTranslation(createTranslator(
+                            translatorMapper.dtoToEntity(translatorDTO)),
+                    languageTo, languageFrom);
         }
         return translatorDTO;
     }

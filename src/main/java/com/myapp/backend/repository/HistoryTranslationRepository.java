@@ -17,5 +17,6 @@ public interface HistoryTranslationRepository extends JpaRepository<HistoryTrans
             + "FROM Translator t "
             + "JOIN t.historyTranslations ht "
             + "WHERE ht.source = :source AND ht.target = :target")
-    List<TranslatorDto> getTranslationsBySourceAndTarget(@Param("source") String source, @Param("target") String target);
+    List<TranslatorDto> getTranslationsBySourceAndTarget(@Param("source") String source,
+                                                         @Param("target") String target);
 }

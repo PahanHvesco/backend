@@ -43,36 +43,46 @@ public final class DefaultAdvice {
                        InvalidDataException.class})
     public ResponseEntity<ExceptionMessage> handleBadRequestErrorException(final Exception exception) {
         log.error(exception.getMessage());
-        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.BAD_REQUEST.value(), exception.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.BAD_REQUEST.value(),
+                exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({RuntimeException.class})
-    public ResponseEntity<ExceptionMessage> handleInternalServerErrorException(final RuntimeException exception) {
+    public ResponseEntity<ExceptionMessage>
+    handleInternalServerErrorException(final RuntimeException exception) {
         log.error(exception.getMessage());
-        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<ExceptionMessage> handleResourceNotFoundException(final RuntimeException exception) {
+    public ResponseEntity<ExceptionMessage>
+    handleResourceNotFoundException(final RuntimeException exception) {
         log.error(exception.getMessage());
-        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.NOT_FOUND.value(), exception.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.NOT_FOUND.value(),
+                exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<ExceptionMessage> handleNoHandlerFoundException(final NoHandlerFoundException exception) {
+    public ResponseEntity<ExceptionMessage>
+    handleNoHandlerFoundException(final NoHandlerFoundException exception) {
         log.error(exception.getMessage());
-        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.NOT_FOUND.value(), exception.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.NOT_FOUND.value(),
+                exception.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ExceptionMessage> handleMethodNotAllowed(final Exception exception) {
+    public ResponseEntity<ExceptionMessage>
+    handleMethodNotAllowed(final Exception exception) {
         log.error(exception.getMessage());
-        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.METHOD_NOT_ALLOWED.value(), exception.getMessage()), HttpStatus.METHOD_NOT_ALLOWED);
+        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.METHOD_NOT_ALLOWED.value(),
+                exception.getMessage()), HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ExceptionMessage> handleMethodArgumentTypeMismatchException(final Exception exception) {
         log.error(exception.getMessage());
-        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.BAD_REQUEST.value(), "Invalid input!"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ExceptionMessage(HttpStatus.BAD_REQUEST.value(),
+                "Invalid input!"), HttpStatus.BAD_REQUEST);
     }
 }

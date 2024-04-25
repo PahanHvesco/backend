@@ -20,17 +20,6 @@
             <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
         </module>
 
-        <module name="ConstantName"/>
-        <module name="LocalVariableName"/>
-        <module name="MemberName"/>
-        <module name="MethodName"/>
-        <module name="PackageName">
-            <property name="format" value="^[a-z]+(\.[a-z0-9]*)*$"/>
-        </module>
-        <module name="ParameterName"/>
-        <module name="StaticVariableName"/>
-        <module name="TypeName"/>
-
         <module name="MethodLength">
             <property name="tokens" value="METHOD_DEF"/>
             <property name="max" value="100"/>
@@ -71,6 +60,12 @@
         <module name="EmptyBlock">
             <property name="tokens" value="LITERAL_CATCH"/>
         </module>
+    </module>
+
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property name="ignorePattern" value="^import\s.+" />
+        <property name="tabWidth" value="4"/>
     </module>
 
 </module>

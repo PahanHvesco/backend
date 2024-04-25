@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: beauty_of_java
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/beauty_of_java
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=org.postgresql.Driver
+      - SPRING_JPA_PROPERTIES_HIBERNATE_ENABLE_LAZY_LOAD_NO_TRANS=true
+      - SPRING_JPA_OPEN-IN-VIEW=false
+      - SPRING_MVC_LOG-RESOLVED-EXCEPTION=false
+      - LOGGING_FILE_NAME=logs/logger.log
+      - LOGGING_PATTERN_CONSOLE=[%d{yyyy-MM-dd HH:mm:ss}] %-5level - %msg%n
+      - LOGGING_PATTERN_FILE=[%d{yyyy-MM-dd HH:mm:ss}] %-5level - %msg%n
+
+  frontend:
+    build:
+      context: D:\Programs\react\new-app
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '3000:3000'

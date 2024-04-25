@@ -109,7 +109,8 @@ public final class HistoryTranslationService {
         }
         historyTranslations.stream()
                 .map(historyTranslationRepository::save)
-                .forEach(savedHistoryTranslations -> log.info("History translation saved ID{}", savedHistoryTranslations.getId()));
+                .forEach(savedHistoryTranslations -> log.info("History translation saved ID{}",
+                        savedHistoryTranslations.getId()));
     }
 
     public HistoryTranslationDto convertEntityToDto(final HistoryTranslation historyTranslation) {

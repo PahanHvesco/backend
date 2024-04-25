@@ -16,4 +16,5 @@ public class HistoryTranslationDto {
     private Timestamp date;
     private String source;
     private String target;
+    private TranslatorDto translatorDto;
 }
